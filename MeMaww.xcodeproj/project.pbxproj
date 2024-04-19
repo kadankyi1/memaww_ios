@@ -29,6 +29,9 @@
 		DFB783F22BCFF83300AB4252 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783F12BCFF83300AB4252 /* PickerTextField.swift */; };
 		DFB783F42BCFF87600AB4252 /* SignupActionTextsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */; };
 		DFDFA8082BD2889500C92D9A /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8072BD2889500C92D9A /* ContactUsView.swift */; };
+		DFDFA80A2BD295AE00C92D9A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8092BD295AE00C92D9A /* ProfileView.swift */; };
+		DFDFA80C2BD2960E00C92D9A /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA80B2BD2960E00C92D9A /* SettingsRowView.swift */; };
+		DFDFA80E2BD296F400C92D9A /* SettingsLogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA80D2BD296F400C92D9A /* SettingsLogoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupActionTextsViews.swift; sourceTree = "<group>"; };
 		DFDFA8062BD270CB00C92D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DFDFA8072BD2889500C92D9A /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
+		DFDFA8092BD295AE00C92D9A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DFDFA80B2BD2960E00C92D9A /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		DFDFA80D2BD296F400C92D9A /* SettingsLogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLogoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,7 @@
 				DFB783ED2BCFD28000AB4252 /* MainView.swift */,
 				DFB783EF2BCFD33000AB4252 /* OrdersView.swift */,
 				DFDFA8072BD2889500C92D9A /* ContactUsView.swift */,
+				DFDFA8092BD295AE00C92D9A /* ProfileView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -131,6 +138,8 @@
 				DFB783D42BCFC74C00AB4252 /* StartButtonView.swift */,
 				DFB783F12BCFF83300AB4252 /* PickerTextField.swift */,
 				DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */,
+				DFDFA80B2BD2960E00C92D9A /* SettingsRowView.swift */,
+				DFDFA80D2BD296F400C92D9A /* SettingsLogoutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 				DFB783EE2BCFD28000AB4252 /* MainView.swift in Sources */,
 				DFB783E42BCFCEA900AB4252 /* KeyboardGuardian.swift in Sources */,
 				DFB783EA2BCFCEFA00AB4252 /* AdaptsToKeyboard.swift in Sources */,
+				DFDFA80E2BD296F400C92D9A /* SettingsLogoutView.swift in Sources */,
 				DFB783D12BCFC62B00AB4252 /* SliderModel.swift in Sources */,
 				DFB783F02BCFD33000AB4252 /* OrdersView.swift in Sources */,
 				DF48F45C2BCECCF900BE2891 /* ContentView.swift in Sources */,
@@ -259,10 +269,12 @@
 				DFB783D32BCFC6BE00AB4252 /* SliderData.swift in Sources */,
 				DFB783D52BCFC74C00AB4252 /* StartButtonView.swift in Sources */,
 				DFDFA8082BD2889500C92D9A /* ContactUsView.swift in Sources */,
+				DFDFA80C2BD2960E00C92D9A /* SettingsRowView.swift in Sources */,
 				DFB783F42BCFF87600AB4252 /* SignupActionTextsViews.swift in Sources */,
 				DFB783E82BCFCEE400AB4252 /* GeometryGetter.swift in Sources */,
 				DF48F45A2BCECCF900BE2891 /* MeMawwApp.swift in Sources */,
 				DFB783EC2BCFD13F00AB4252 /* SignupView.swift in Sources */,
+				DFDFA80A2BD295AE00C92D9A /* ProfileView.swift in Sources */,
 				DFB783CE2BCFC58D00AB4252 /* SliderCardView.swift in Sources */,
 				DFB783D72BCFC86600AB4252 /* OnboardingView.swift in Sources */,
 			);

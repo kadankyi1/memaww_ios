@@ -69,8 +69,8 @@ struct MainView: View {
                     ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
                     
                 case 4:
-                    //OrdersView()
-                    ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
+                    ProfileView(currentStage: .constant("MainView"), user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"))
+                    
                     
                 default:
                     NavigationView {
