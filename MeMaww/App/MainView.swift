@@ -35,6 +35,12 @@ struct MainView: View {
          */
         VStack(spacing: 0) {
             
+            Text(" MeMaww ")
+                .foregroundColor(Color(.black))
+                .font(.custom("SweetSensationsPersonalUse", size: 30))
+                .padding(.top, 5)
+                
+            
             ZStack {
                 
                 Spacer()
@@ -55,12 +61,12 @@ struct MainView: View {
                             }
                         }
                         .navigationTitle("Today Page")
-                    }*/
-                    //OrdersView()
-                    ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
+                    }
+                     */
+                    OrdersView()
                 case 1:
                     //OrdersView()
-                    ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
+                    InviteView(currentStage: .constant("MainView"), referral_code: getSavedString("user_referralcode"))
                 case 2:
                     //OrdersView()
                     ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
@@ -69,7 +75,7 @@ struct MainView: View {
                     ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
                     
                 case 4:
-                    ProfileView(currentStage: .constant("MainView"), user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"))
+                    ProfileView(currentStage: .constant("MainView"), user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"),  user_phone: getSavedString("user_phone"), user_address: "Not Set", user_email:  "Not Set")
                     
                     
                 default:

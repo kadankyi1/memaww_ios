@@ -1,13 +1,13 @@
 //
-//  StartButtonView.swift
+//  InviteButtonView.swift
 //  MeMaww
 //
-//  Created by Dankyi Anno Kwaku on 4/17/24.
+//  Created by Dankyi Anno Kwaku on 4/20/24.
 //
 
 import SwiftUI
 
-struct StartButtonView: View {
+struct InviteButtonView: View {
     // MARK: - PROPERTIES
     
     @Binding var currentStage: String
@@ -19,10 +19,10 @@ struct StartButtonView: View {
         
         Button(action: {
             //appStage = "LoginView"
-            self.currentStage = "SignupView"
+            //self.currentStage = "SignupView"
         }) {
             HStack (spacing: 8) {
-                Text("START")
+                Text("SEND INVITE")
                     .foregroundColor(Color.accentColor)
             }
             .padding(.horizontal, 16)
@@ -40,9 +40,9 @@ struct StartButtonView: View {
     // MARK - PREVIEW
 
 
-struct StartButtonView_Previews: PreviewProvider {
+struct InviteButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        StartButtonView(currentStage: .constant("LoginView"))
+        InviteButtonView(currentStage: .constant("LoginView"))
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
     }

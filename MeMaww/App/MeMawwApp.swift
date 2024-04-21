@@ -24,8 +24,6 @@ struct MeMawwApp: App {
             
             if(self.currentStage == "OnboardingView" || self.currentStage == ""){
                 OnboardingView(currentStage: $currentStage)
-            } else if(self.currentStage == "GetLoginCodeView"){
-                GetLoginCodeView(currentStage: $currentStage)
             } else if(self.currentStage == "SignupView"){
                 SignupView(currentStage: $currentStage)
             } else {
