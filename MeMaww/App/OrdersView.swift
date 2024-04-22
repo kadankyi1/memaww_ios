@@ -55,12 +55,21 @@ struct OrdersView: View {
     }
 }
 
+class MyModel: ObservableObject {
+    @Published var isValid: Bool = false
+
+    init() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.isValid = true
+        }
+    }
+}
 
 // MARK: - PREVIEW
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(orders: orderData)
+        OrdersView()
     }
 }
 

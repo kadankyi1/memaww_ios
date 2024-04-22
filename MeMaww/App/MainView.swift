@@ -68,11 +68,10 @@ struct MainView: View {
                     //OrdersView()
                     InviteView(currentStage: .constant("MainView"), referral_code: getSavedString("user_referralcode"))
                 case 2:
-                    //OrdersView()
-                    ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
+                    StartOrderView()
                     
                 case 3:
-                    ContactUsView(textfield_msg: "Type message here", currentStage: .constant("MainView"))
+                    ContactUsView()
                     
                 case 4:
                     ProfileView(currentStage: .constant("MainView"), user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"),  user_phone: getSavedString("user_phone"), user_address: "Not Set", user_email:  "Not Set")
