@@ -15,38 +15,74 @@ struct OrderRowView: View {
     
     // MARK: - BODY
     var body: some View {
+                        
         GroupBox(){
         HStack{
                 VStack(){
-                    
-                    HStack{
-                        Text("#"+order.orderId)
-                            .font(.headline)
-                            .fontWeight(.bold)
+                        Text(order.orderId)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
                         
-                            Spacer()
-                        
-                        Text(order.orderPickupLocation)
+                        Text(order.orderStatusMessage)
                             .font(.caption)
-                            .foregroundColor(Color.secondary)
-                            .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-                    } // END HSTACK
+                            .foregroundColor(Color.black)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     
+                    VStack(spacing: 0){
+                        TrackProgressView(status: "Pending", isFirst: true, isLast: false, viewNumber: 1, state: order.orderStatus)
+                        TrackProgressView(status: "Picked", isFirst: false, isLast: false, viewNumber: 2, state: order.orderStatus)
+                        TrackProgressView(status: "Washing", isFirst: false, isLast: false, viewNumber: 3, state: order.orderStatus)
+                        TrackProgressView(status: "Delivered", isFirst: false, isLast: true, viewNumber: 4, state: order.orderStatus)
+                    }
                     
                     HStack{
-                    Text("  " + order.orderStatusMessage + "  ")
-                        .font(.footnote)
-                        .bold()
-                        .foregroundColor(Color.white)
-                        .background(Color(order.orderStatusColor))
-                        .cornerRadius(2)
+                        Text("Ordered")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(Color.black)
+                            .background(Color(order.orderStatusColor))
+                            .cornerRadius(2)
+                        Text(order.orderDate)
+                            .font(.footnote)
+                            .foregroundColor(Color.gray)
+                            .background(Color(order.orderStatusColor))
+                            .cornerRadius(2)
                         
                         Spacer()
                         
-                        Text(order.orderDate)
-                            .font(.caption)
-                            .foregroundColor(Color.secondary)
-                            .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                            Text("Items")
+                                .font(.footnote)
+                                .bold()
+                                .foregroundColor(Color.black)
+                                .background(Color(order.orderStatusColor))
+                                .cornerRadius(2)
+                            Text(order.orderAllItemsQuantity)
+                                .font(.footnote)
+                                .foregroundColor(Color.gray)
+                                .background(Color(order.orderStatusColor))
+                                .cornerRadius(2)
+                    }
+                    .padding(.vertical, 10)
+                    
+                    
+                    
+                    HStack{
+                        Text("Delivery")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(Color.black)
+                            .cornerRadius(2)
+                        Text(order.orderDeliveryDate)
+                            .font(.footnote)
+                            .foregroundColor(Color.gray)
+                            .cornerRadius(2)
+                        
+                        Spacer()
+                        
                     }
                     .padding(.vertical, 10)
                 }

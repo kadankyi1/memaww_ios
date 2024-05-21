@@ -18,7 +18,7 @@ struct MainView: View {
     }
     
     //var access_token: String = getSavedString("user_accesstoken");
-    @State var selectedIndex = 0
+    @State var selectedIndex = 2
     @State var shouldShowModal = false
     @ObservedObject var updateContent = HttpUpdateContent()
     @State var now = Date()

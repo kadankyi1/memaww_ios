@@ -9,14 +9,15 @@ import SwiftUI
 
 struct MessageBubble: View {
     var message: Message
-    @State private var showTime = false
+    @State private var showTime = true
     
     var body: some View {
         VStack(alignment: message.received ? .leading : .trailing) {
             HStack {
                 Text(message.text)
                     .padding()
-                    .background(message.received ? Color("Gray") : Color("Peach"))
+                    .foregroundColor(message.received ? Color.black : Color.white)
+                    .background(message.received ? Color("Gray") : Color("ColorMeMawwBlueDark"))
                     .cornerRadius(30)
             }
             .frame(maxWidth: 300, alignment: message.received ? .leading : .trailing)

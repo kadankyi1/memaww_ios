@@ -36,7 +36,7 @@ struct ProfileView: View {
                     Divider().padding(.vertical, 2)
                     GroupBox(){
                         
-                        SettingsRowView(icon: "info", name: "", content: nil, linkLabel: "Service Policy", linkDestination: "https://web.facebook.com/PastorJuliusGChristLord")
+                        SettingsRowView(icon: "info", name: "", content: nil, linkLabel: "Service Policy", linkDestination: "https://memaww.com/privacy-policy")
                         SettingsRowView(icon: "star", name: "", content: nil, linkLabel: "Rate The App", linkDestination: "https://www.facebook.com/theHoly.Generation20")
                         
                     }

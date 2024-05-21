@@ -84,7 +84,7 @@ struct SignupView: View {
             TextField("Last Name", text: $last_name).textFieldStyle(RoundedBorderTextFieldStyle.init())
                 .scaleEffect(x: 1, y: 1, anchor: .center)
                 .padding(.horizontal, 50)
-                .padding(.bottom, 50)
+                .padding(.bottom, 10)
             
             TextField("Phone Number", text: $phone_number).textFieldStyle(RoundedBorderTextFieldStyle.init())
                 .scaleEffect(x: 1, y: 1, anchor: .center)
@@ -208,7 +208,7 @@ class SignupHttpAuth: ObservableObject {
         request.httpBody = finalBody
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //request.setValue("text/json", forHTTPHeaderField: "Accept")
-            //request.setValue("application/json", forHTTPHeaderField: "Accept")
+        //request.setValue("application/json", forHTTPHeaderField: "Accept")
 
         URLSession.shared.dataTask(with: request) { (data2, response, error) in
             print("starting 1")

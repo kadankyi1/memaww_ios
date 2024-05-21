@@ -17,6 +17,7 @@ struct OrderModel: Identifiable {
     var orderPickupLocation: String
     var orderAmount: String
     var orderDate: String
+    var orderDeliveryDate: String
     var orderUserId: String
 }
 

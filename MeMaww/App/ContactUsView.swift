@@ -73,7 +73,7 @@ struct ContactUsView: View {
                 
         }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("Peach"))
+        .background(Color("ColorMeMawwBlueDark"))
             
         MessageField()
                 .environmentObject(messagesManager)

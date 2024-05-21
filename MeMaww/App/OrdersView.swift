@@ -128,7 +128,7 @@ class HttpGetOrders: ObservableObject {
                         print(order_user_id_string)
                         if let all_items = item["all_items"].string {
                             print(all_items)
-                            if let order_status = item["order_status"].int {
+                            if let order_status = item["order_delivery_status_number"].int {
                                 print(order_status)
                                 if let order_status_message = item["order_status_message"].string {
                                         print(order_status_message)
@@ -143,36 +143,28 @@ class HttpGetOrders: ObservableObject {
                                                     print(order_user_id_string)
                                                     
                                                     
-                                                    if let order_id_string = item["order_id_string"].string {
+                                                    if let order_id_string = item["order_id_long"].string {
                                                         print(order_id_string)
+                                                        
+                                                        
+                                                        if let order_delivery_date = item["order_delivery_date"].string {
+                                                            print(order_delivery_date)
+                                                        
                                                     
-                                                    var type_color = "ColorLightRed"
-                                                    if(order_status == 0){
-                                                        type_color = "ColorLightGray";
-                                                    } else if(order_status == 2){
-                                                        type_color =  "ColorLightBlue";
-                                                    } else if(order_status == 3){
-                                                        type_color =  "ColorLightOrange";
-                                                    } else if(order_status == 4){
-                                                        type_color =  "ColorLightYellow";
-                                                    } else if(order_status == 5){
-                                                        type_color =  "ColorLightBlue";
-                                                    } else if(order_status == 6){
-                                                        type_color =  "ColorLightGreen";
+                                                            self.received_orders.append(OrderModel(
+                                                                orderId: order_id_string,
+                                                                orderAllItemsQuantity: all_items,
+                                                                orderStatus: order_status,
+                                                                orderStatusColor: order_delivery_date,
+                                                                orderStatusMessage: order_status_message,
+                                                                orderPickupLocation: order_collection_location_raw,
+                                                                orderAmount: order_final_amt_with_currency,
+                                                                orderDate: order_date,
+                                                                orderDeliveryDate: order_delivery_date,
+                                                                orderUserId: order_user_id_string
+                                                            ))
+                                                        }
                                                     }
-                                                    
-                                                    self.received_orders.append(OrderModel(
-                                                        orderId: order_id_string,
-                                                        orderAllItemsQuantity: all_items,
-                                                        orderStatus: order_status,
-                                                        orderStatusColor: type_color,
-                                                        orderStatusMessage: order_status_message,
-                                                        orderPickupLocation: order_collection_location_raw,
-                                                        orderAmount: order_final_amt_with_currency,
-                                                        orderDate: order_date,
-                                                        orderUserId: order_user_id_string
-                                                    ))
-                                                }
                                                     
                                                 }
                                                 
