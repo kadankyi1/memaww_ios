@@ -38,6 +38,9 @@
 		DFB783F22BCFF83300AB4252 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783F12BCFF83300AB4252 /* PickerTextField.swift */; };
 		DFB783F42BCFF87600AB4252 /* SignupActionTextsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */; };
 		DFBEB8892BFC6D190049C10B /* TrackProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEB8882BFC6D190049C10B /* TrackProgressView.swift */; };
+		DFBEB88B2BFCDF500049C10B /* CallBackRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEB88A2BFCDF500049C10B /* CallBackRequestView.swift */; };
+		DFBEB8962BFE2EE40049C10B /* TheTellerCheckout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */; };
+		DFBEB8972BFE2EE40049C10B /* TheTellerCheckout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DFDFA8082BD2889500C92D9A /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8072BD2889500C92D9A /* ContactUsView.swift */; };
 		DFDFA80A2BD295AE00C92D9A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8092BD295AE00C92D9A /* ProfileView.swift */; };
 		DFDFA80C2BD2960E00C92D9A /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA80B2BD2960E00C92D9A /* SettingsRowView.swift */; };
@@ -48,6 +51,37 @@
 		DFDFA8162BD4E6E900C92D9A /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8152BD4E6E900C92D9A /* InviteView.swift */; };
 		DFDFA8182BD4EB3900C92D9A /* InviteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8172BD4EB3900C92D9A /* InviteButtonView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFBEB8922BFE2E970049C10B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CC8621D2553283F000AA43C;
+			remoteInfo = TheTellerCheckout;
+		};
+		DFBEB8942BFE2E970049C10B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CC862262553283F000AA43C;
+			remoteInfo = TheTellerCheckoutTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DFBEB8982BFE2EE40049C10B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DFBEB8972BFE2EE40049C10B /* TheTellerCheckout.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DF48F4562BCECCF900BE2891 /* MeMaww.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeMaww.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +115,8 @@
 		DFB783F12BCFF83300AB4252 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupActionTextsViews.swift; sourceTree = "<group>"; };
 		DFBEB8882BFC6D190049C10B /* TrackProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackProgressView.swift; sourceTree = "<group>"; };
+		DFBEB88A2BFCDF500049C10B /* CallBackRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBackRequestView.swift; sourceTree = "<group>"; };
+		DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheTellerCheckout.xcodeproj; path = "../../Downloads/IOS_SDK-master/TheTellerCheckout.xcodeproj"; sourceTree = "<group>"; };
 		DFDFA8062BD270CB00C92D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DFDFA8072BD2889500C92D9A /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		DFDFA8092BD295AE00C92D9A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -98,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFBEB8962BFE2EE40049C10B /* TheTellerCheckout.framework in Frameworks */,
 				DFB783E12BCFCE3000AB4252 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +147,7 @@
 			children = (
 				DF48F4582BCECCF900BE2891 /* MeMaww */,
 				DF48F4572BCECCF900BE2891 /* Products */,
+				DFBEB88C2BFE2E970049C10B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +217,7 @@
 				DF9F9F862BD9200300111DFD /* FinalPriceView.swift */,
 				DF9F9F882BD9235D00111DFD /* FinalPriceListItemView.swift */,
 				DFBEB8882BFC6D190049C10B /* TrackProgressView.swift */,
+				DFBEB88A2BFCDF500049C10B /* CallBackRequestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +263,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		DFBEB88C2BFE2E970049C10B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFBEB88E2BFE2E970049C10B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */,
+				DFBEB8952BFE2E970049C10B /* TheTellerCheckoutTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -234,6 +290,7 @@
 				DF48F4522BCECCF900BE2891 /* Sources */,
 				DF48F4532BCECCF900BE2891 /* Frameworks */,
 				DF48F4542BCECCF900BE2891 /* Resources */,
+				DFBEB8982BFE2EE40049C10B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,12 +333,35 @@
 			);
 			productRefGroup = DF48F4572BCECCF900BE2891 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DFBEB88E2BFE2E970049C10B /* Products */;
+					ProjectRef = DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DF48F4552BCECCF900BE2891 /* MeMaww */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TheTellerCheckout.framework;
+			remoteRef = DFBEB8922BFE2E970049C10B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DFBEB8952BFE2E970049C10B /* TheTellerCheckoutTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TheTellerCheckoutTests.xctest;
+			remoteRef = DFBEB8942BFE2E970049C10B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DF48F4542BCECCF900BE2891 /* Resources */ = {
@@ -317,6 +397,7 @@
 				DF9F9F7F2BD672A000111DFD /* MessagesManager.swift in Sources */,
 				DFB783E62BCFCECA00AB4252 /* KeyboardHost.swift in Sources */,
 				DFB783D32BCFC6BE00AB4252 /* SliderData.swift in Sources */,
+				DFBEB88B2BFCDF500049C10B /* CallBackRequestView.swift in Sources */,
 				DFDFA8182BD4EB3900C92D9A /* InviteButtonView.swift in Sources */,
 				DFB783D52BCFC74C00AB4252 /* StartButtonView.swift in Sources */,
 				DFDFA8142BD4291500C92D9A /* OrderRowView.swift in Sources */,

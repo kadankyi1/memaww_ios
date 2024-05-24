@@ -70,7 +70,7 @@ class MessagesManager: ObservableObject {
                                         if let timestamp = item["timestamp"].string {
                                             print(timestamp)
                                             self.messages.append(Message(
-                                                id: message_id_string,
+                                                //id: message_id_string,
                                                 text: message_text,
                                                 received: message_received,
                                                 timestamp: timestamp

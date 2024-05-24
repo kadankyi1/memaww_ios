@@ -8,7 +8,7 @@
 import Foundation
 
 struct Message: Identifiable, Codable {
-    var id: String
+    var id = UUID()
     var text: String
     var received: Bool
     var timestamp: String

@@ -18,6 +18,7 @@ struct StartOrderView: View {
     @State private var lightWeightWashAndFold = 0
     @State private var lightWeightWashAndIron = 0
     @State private var lightWeightJustIron = 0
+    @State var shouldShowModal = false
     
     @State private var bulkyItemsWashAndFold = 0
     @State private var bulkyItemsWashAndIron = 0
@@ -26,84 +27,97 @@ struct StartOrderView: View {
     @State private var discountCode = ""
 
     @ObservedObject var getPriceManager = getPriceHttp()
-
     
     var body: some View {
         
         NavigationView {
-            
-            if !getPriceManager.requestOngoing {
-                if getPriceManager.requestStatusSuccessful {
-                    NavigationLink(destination:
-                                    FinalPriceView(currentStage: .constant("MainView"), payOnline:  getPriceManager.payOnline, payOnPickup:  getPriceManager.payOnPickup, originalPrice:  getPriceManager.originalPrice, discountPercentage:  getPriceManager.discountPercentage, discountAmount:  getPriceManager.discountAmount, priceFinal:  getPriceManager.priceFinal), isActive: $getPriceManager.requestStatusSuccessful){ }
-                } else {
-                    Form {
-                        Section(header: Text("Collection & DropOff")){
-                            TextField("Pickup Location", text: $pickupLocation)
-                            TextField("Contact Phone", text: $contactPhoneNumber)
-                            DatePicker("Pickup Time", selection: $currentDate, displayedComponents: .hourAndMinute).labelsHidden()
-                        }
-                        
-                    
-                        Section(header: Text("Lightweight Items")){
-                            Stepper("Wash & Fold: \(lightWeightWashAndFold) items", value: $lightWeightWashAndFold, in: 0...100)
-                            Stepper("Wash & Iron: \(lightWeightWashAndIron) items", value: $lightWeightWashAndIron, in: 0...100)
-                            Stepper("Just & Iron: \(lightWeightJustIron) items", value: $lightWeightJustIron, in: 0...100)
-                        }
-                        
-                        
-                        Section(header: Text("Bulky Items")){
-                            Stepper("Wash & Fold: \(bulkyItemsWashAndFold) items", value: $bulkyItemsWashAndFold, in: 0...100)
-                            Stepper("Wash & Iron: \(bulkyItemsWashAndIron) items", value: $bulkyItemsWashAndIron, in: 0...100)
-                        }
-                        
-                        Section(header: Text("Anything Else?")){
-                            TextField("Any Special Instructions", text: $specialInstructions)
-                            TextField("Discount Code", text: $discountCode)
-                        }
-                        
-                            Button(action: {
-                                
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "HH:mm"
-                                
-                                print("collect_loc_raw: \(self.pickupLocation)")
-                                print("collect_loc_gps: EMPTY")
-                                print("collect_datetime: \(dateFormatter.string(from: self.currentDate))")
-                                print("contact_person_phone: \(self.contactPhoneNumber)")
-                                print("drop_loc_raw: EMPTY")
-                                print("drop_loc_gps: EMPTY")
-                                print("drop_datetime: EMPTY")
-                                print("smallitems_justwash_quantity: \(self.lightWeightWashAndFold)")
-                                print("smallitems_washandiron_quantity: \(self.lightWeightWashAndIron)")
-                                print("smallitems_justiron_quantity: \(self.lightWeightJustIron)")
-                                print("bigitems_justwash_quantity: \(self.bulkyItemsWashAndFold)")
-                                print("bigitems_washandiron_quantity: \(self.lightWeightJustIron)")
-                                print("special_instructions: \(self.specialInstructions)")
-                                print("discount_code: \(self.discountCode)")
-                                    
-                                getPriceManager.getPrice(collect_loc_raw: self.pickupLocation, collect_loc_gps: "", collect_datetime: dateFormatter.string(from: self.currentDate), contact_person_phone: self.contactPhoneNumber, drop_loc_raw: "", drop_loc_gps: "", drop_datetime: "", smallitems_justwash_quantity: String(self.lightWeightWashAndFold), smallitems_washandiron_quantity: String(self.lightWeightWashAndIron), smallitems_justiron_quantity: String(self.lightWeightJustIron), bigitems_justwash_quantity: String(self.bulkyItemsWashAndFold), bigitems_washandiron_quantity: String(self.bulkyItemsWashAndIron), special_instructions: self.specialInstructions, discount_code: self.discountCode)
-                            }) {
-                                HStack (spacing: 8) {
-                                    Text("GET PRICE")
-                                        .foregroundColor(Color.white)
+                VStack(spacing: 0) {
+                    CallBackRequestView()
+                    if !getPriceManager.requestOngoing {
+                        if getPriceManager.requestStatusSuccessful {
+                            NavigationLink(destination:
+                                            FinalPriceView(currentStage: .constant("MainView"), selectedIndex:  .constant(2), payOnline:  getPriceManager.payOnline, payOnPickup:  getPriceManager.payOnPickup, originalPrice:  getPriceManager.originalPrice, discountPercentage:  getPriceManager.discountPercentage, discountAmount:  getPriceManager.discountAmount, priceFinal:  getPriceManager.priceFinal,
+                                                           priceFinalLong: getPriceManager.priceFinalLong, txnReference: getPriceManager.txnReference, merchantId: getPriceManager.merchantId, merchantApiUser: getPriceManager.merchantApiUser, merchantApiKey: getPriceManager.merchantApiKey, returnUrl: getPriceManager.returnUrl, txnNarration: getPriceManager.txnNarration, userEmail: getPriceManager.userEmail, viewStage: "1", paymentResponse: "", merchantTestApiKey: getPriceManager.merchantTestApiKey, paymentStatus: ""), isActive: $getPriceManager.requestStatusSuccessful){ }
+                        } else {
+                            Form {
+                                Section(header: Text("Collection & DropOff")){
+                                    TextField("Pickup Location", text: $pickupLocation)
+                                    TextField("Contact Phone", text: $contactPhoneNumber)
+                                    DatePicker("Pickup Time", selection: $currentDate, displayedComponents: .hourAndMinute)
                                 }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 10)
-                                .foregroundColor(Color("ColorMeMawwBlueDark"))
-                            } //: BUTTON
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .accentColor(Color.accentColor)
-                            .background(Color("ColorMeMawwBlueDark"))
-                            .cornerRadius(20)
-                            .padding(.bottom, 50)
-                        
-                    } // END FORM
+                                
+                            
+                                Section(header: Text("Lightweight Items")){
+                                    Stepper("Wash & Fold: \(lightWeightWashAndFold) items", value: $lightWeightWashAndFold, in: 0...100)
+                                    Stepper("Wash & Iron: \(lightWeightWashAndIron) items", value: $lightWeightWashAndIron, in: 0...100)
+                                    Stepper("Just & Iron: \(lightWeightJustIron) items", value: $lightWeightJustIron, in: 0...100)
+                                }
+                                
+                                
+                                Section(header: Text("Bulky Items")){
+                                    Stepper("Wash & Fold: \(bulkyItemsWashAndFold) items", value: $bulkyItemsWashAndFold, in: 0...100)
+                                    Stepper("Wash & Iron: \(bulkyItemsWashAndIron) items", value: $bulkyItemsWashAndIron, in: 0...100)
+                                }
+                                
+                                Section(header: Text("Anything Else?")){
+                                    TextField("Any Special Instructions", text: $specialInstructions)
+                                    TextField("Discount Code", text: $discountCode)
+                                }
+                                
+                                    Button(action: {
+                                        
+                                        let dateFormatter = DateFormatter()
+                                        dateFormatter.dateFormat = "HH:mm"
+                                        
+                                        print("collect_loc_raw: \(self.pickupLocation)")
+                                        print("collect_loc_gps: EMPTY")
+                                        print("collect_datetime: \(dateFormatter.string(from: self.currentDate))")
+                                        print("contact_person_phone: \(self.contactPhoneNumber)")
+                                        print("drop_loc_raw: EMPTY")
+                                        print("drop_loc_gps: EMPTY")
+                                        print("drop_datetime: EMPTY")
+                                        print("smallitems_justwash_quantity: \(self.lightWeightWashAndFold)")
+                                        print("smallitems_washandiron_quantity: \(self.lightWeightWashAndIron)")
+                                        print("smallitems_justiron_quantity: \(self.lightWeightJustIron)")
+                                        print("bigitems_justwash_quantity: \(self.bulkyItemsWashAndFold)")
+                                        print("bigitems_washandiron_quantity: \(self.lightWeightJustIron)")
+                                        print("special_instructions: \(self.specialInstructions)")
+                                        print("discount_code: \(self.discountCode)")
+                                            
+                                        getPriceManager.getPrice(collect_loc_raw: self.pickupLocation, collect_loc_gps: "", collect_datetime: dateFormatter.string(from: self.currentDate), contact_person_phone: self.contactPhoneNumber, drop_loc_raw: "", drop_loc_gps: "", drop_datetime: "", smallitems_justwash_quantity: String(self.lightWeightWashAndFold), smallitems_washandiron_quantity: String(self.lightWeightWashAndIron), smallitems_justiron_quantity: String(self.lightWeightJustIron), bigitems_justwash_quantity: String(self.bulkyItemsWashAndFold), bigitems_washandiron_quantity: String(self.bulkyItemsWashAndIron), special_instructions: self.specialInstructions, discount_code: self.discountCode)
+                                    }) {
+                                        HStack (spacing: 8) {
+                                            Text("GET PRICE")
+                                                .foregroundColor(Color.white)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 10)
+                                        .foregroundColor(Color("ColorMeMawwBlueDark"))
+                                    } //: BUTTON
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .accentColor(Color.accentColor)
+                                    .background(Color("ColorMeMawwBlueDark"))
+                                    .cornerRadius(20)
+                                    .padding(.bottom, 50)
+                                
+                            } // END FORM
+                        }
+                    } else {
+                        Spacer()
+                            .fullScreenCover(isPresented: $shouldShowModal, content: {
+                                ProgressView()
+                            
+                        })
+                    }
+                    
+                    
                 }
-            } else {
-                ProgressView()
-            }
+                .navigationBarHidden(true)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("ColorMeMawwBlueDark"))
+            
         } // END NAVIGATIONVIEW
+        .navigationBarTitleDisplayMode(.inline)
         
     }
 }
@@ -124,6 +138,15 @@ class getPriceHttp: ObservableObject {
     @Published var discountPercentage = ""
     @Published var discountAmount = ""
     @Published var priceFinal = ""
+    @Published var txnReference = ""
+    @Published var merchantId = ""
+    @Published var merchantApiUser = ""
+    @Published var merchantApiKey = ""
+    @Published var returnUrl = ""
+    @Published var priceFinalLong = ""
+    @Published var txnNarration = ""
+    @Published var userEmail = ""
+    @Published var merchantTestApiKey = ""
     
     
     func getPrice(collect_loc_raw: String, collect_loc_gps: String, collect_datetime: String, contact_person_phone: String, drop_loc_raw: String, drop_loc_gps: String, drop_datetime: String, smallitems_justwash_quantity: String, smallitems_washandiron_quantity: String, smallitems_justiron_quantity: String, bigitems_justwash_quantity: String, bigitems_washandiron_quantity: String, special_instructions: String, discount_code: String) {
@@ -201,10 +224,71 @@ class getPriceHttp: ObservableObject {
                                 self.discountAmount = discount_amount
                                 print("discountAmount: \(self.discountAmount)")
                                 
-                                if let price_final = json["price_final"].string {
-                                    self.requestStatusSuccessful = true
-                                    self.priceFinal = price_final
-                                    print("priceFinal: \(self.priceFinal)")
+                                if let txn_reference = json["txn_reference"].string {
+                                    self.txnReference = txn_reference
+                                    print("txn_reference: \(self.txnReference)")
+                                    
+                                    if let merchant_id = json["merchant_id"].string {
+                                        self.merchantId = merchant_id
+                                        print("merchant_id: \(self.merchantId)")
+                                        
+                                        if let merchant_api_user = json["merchant_api_user"].string {
+                                            self.merchantApiUser = merchant_api_user
+                                            print("merchant_api_user: \(self.merchantApiUser)")
+                                            
+                                            if let merchant_api_key = json["merchant_api_key"].string {
+                                                self.merchantApiKey = merchant_api_key
+                                                print("merchant_api_key: \(self.merchantApiKey)")
+                                                
+                                                if let return_url = json["return_url"].string {
+                                                    self.returnUrl = return_url
+                                                    print("return_url: \(self.returnUrl)")
+                                                    
+                                                    if let price_final_no_currency_long = json["price_final_no_currency_long"].string {
+                                                        self.priceFinalLong = price_final_no_currency_long
+                                                        print("price_final_no_currency_long: \(self.priceFinalLong)")
+                                                        
+                                                        if let txn_narration = json["txn_narration"].string {
+                                                            self.txnNarration = txn_narration
+                                                            print("txn_narration: \(self.txnNarration)")
+                                                            
+                                                            if let user_email = json["user_email"].string {
+                                                                self.userEmail = user_email
+                                                                print("user_email: \(self.userEmail)")
+                                                                
+                                                                
+                                                                if let merchant_test_api_key = json["merchant_test_api_key"].string {
+                                                                    self.merchantTestApiKey = merchant_test_api_key
+                                                                    print("merchant_test_api_key: \(self.merchantTestApiKey)")
+                                                                    
+                                                                    if let price_final = json["price_final"].string {
+                                                                        self.requestStatusSuccessful = true
+                                                                        self.priceFinal = price_final
+                                                                        print("priceFinal: \(self.priceFinal)")
+                                                                    }
+                                                                    
+                                                                }
+                                                                
+                                                            }
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    }
+                                                    
+                                                    
+                                                }
+                                                
+                                                
+                                            }
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    }
+                                    
+                                    
                                 }
                                 
                             }
