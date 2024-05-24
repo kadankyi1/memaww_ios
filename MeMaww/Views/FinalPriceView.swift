@@ -32,6 +32,7 @@ struct FinalPriceView: View {
     @State var paymentResponse: String = ""
     var merchantTestApiKey: String
     @State var paymentStatus: String = ""
+    @ObservedObject var updateOrderPayment = updateOrderPaymentHttp()
     
     
     @Environment(\.presentationMode) var presentationMode
@@ -43,7 +44,6 @@ struct FinalPriceView: View {
                 VStack(spacing: 20){
                     // MARK: -- SECTION 2
                     GroupBox(){
-                        
                         FinalPriceListItemView(label: "Sub-Total", name: self.originalPrice)
                         Divider().padding(.vertical, 2)
                         FinalPriceListItemView(label: "Discount", name: self.discountAmount)
@@ -55,9 +55,9 @@ struct FinalPriceView: View {
                     GroupBox(){
                         
                         
-                        if payOnline == "yes" && viewStage == "1"{
+                        if payOnline == "yes" && updateOrderPayment.viewStage == "1"{
                             Button(action: {
-                                viewStage = "2"
+                                updateOrderPayment.viewStage = "2"
                                 let checkout = TheTellerCheckout(
                                     /* */
                                     config: [
@@ -69,7 +69,7 @@ struct FinalPriceView: View {
                                         "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
                                     ])
                                 //self.priceFinalLong
-                                checkout.initCheckout(transId:self.txnReference, amount: "000000000010", desc: self.txnNarration,customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                checkout.initCheckout(transId:self.txnReference, amount: "000000000010", desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
@@ -77,15 +77,10 @@ struct FinalPriceView: View {
                                     print("PAYMENT RESULT START")
                                     print(string ?? "Payment error occurred")
                                     
-                                        let payment_status = string? ["status"] as! String
-                                        paymentStatus = payment_status
-                                        let payment_reason = string? ["reason"] as! String
-                                        paymentResponse = payment_reason
-                                    if payment_status == "approved"{
-                                        viewStage = "3"
-                                    } else {
-                                        viewStage = "4"
-                                    }
+                                    let payment_status = string? ["status"] as! String
+                                    paymentStatus = payment_status
+                                    let payment_reason = string? ["reason"] as! String
+                                    paymentResponse = payment_reason
                                         
                                     print("PAYMENT STATUS: " + paymentResponse)
                                     
@@ -93,65 +88,9 @@ struct FinalPriceView: View {
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
-
-                                    /*
-                                    guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/update-order-payment") else {print("Request failed 1") return}
-                                        
-                                    let body: [String: String] =
-                                        [
-                                            "order_id": text,
-                                            "order_payment_status": text,
-                                            "order_payment_details": text,
-                                            "order_payment_method": "PaySwitch",
-                                            "purge": "1",
-                                            "app_type": "IOS",
-                                            "app_version_code": MeMawwApp.app_version
-                                        ]
-
-                                    let finalBody = try! JSONSerialization.data(withJSONObject: body)
-                                    let auth_pass = "Bearer " + getSavedString("user_accesstoken");
                                     
-                                    print("auth_pass:  \(auth_pass)")
-                                    print("body:  \(body)")
-                                    
-                                    var request = URLRequest(url: url)
-                                    request.httpMethod = "POST"
-                                    request.httpBody = finalBody
-                                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                                    request.setValue(auth_pass, forHTTPHeaderField: "Authorization")
-                                    
-                                    print("About to start request")
-                                    URLSession.shared.dataTask(with: request) { (data, response, error) in guard let data = data else { return }
-                                    print("data: \(data)")
-                                            
-                                    do {
-                                    let json = try JSON(data: data)
-                                    if let status = json["status"].string {
-                                            //Now you got your value
-                                            print("status: \(status)")
-                                        if status == "success" {
-                                            print(status)
-                                            self.message_sent = "success"
-                                            
-                                        } else {
-                                            if let message = json["message"].string {
-                                                //Now you got your value
-                                                  print(status)
-                                                  
-                                                  DispatchQueue.main.async {
-                                                      self.message = message
-                                                  }
-                                              }
-                                            }
-                                        
-                                        }
-                                    } catch  let error as NSError {
-                                            print("Request failed 3")
-                                            print(error)
-                                    }
-                                            
-                                  }.resume()
-                                     */
+                                    updateOrderPayment.updateOrder(txnReference: self.txnReference, paymentStatus: paymentStatus, paymentResponse: paymentResponse, paymentMethod: "PaySwitch")
+                                
                                     
                                 }) // END OF initCheckout
 
@@ -172,7 +111,7 @@ struct FinalPriceView: View {
                             .padding(.bottom, 50)
                         }
                         
-                        else if payOnline == "yes"  && viewStage == "2"{ // SHOW PAYMENT SUCCESSFUL AND CLOSE PAGE
+                        if updateOrderPayment.viewStage == "2"{ // SHOW PAYMENT SUCCESSFUL AND CLOSE PAGE
                             
                             
                                 ProgressView()
@@ -181,19 +120,20 @@ struct FinalPriceView: View {
                                     //messages_http_manager.getArticles(user_accesstoken: access_token)
                                 })
                             
-                        } else if payOnline == "yes"  && viewStage == "3"{ // SHOW PAYMENT SUCCESSFUL AND CLOSE PAGE
+                        }
+                        
+                        if updateOrderPayment.viewStage == "3"{ // SHOW PAYMENT UPDATE AND CLOSE PAGE
                             
                             VStack {}
                                 .alert(isPresented: $model.isValid, content: {
-                                Alert(title: Text("Payment"),
+                                Alert(title: Text("Order"),
                                       message: Text(paymentResponse),
                                       dismissButton: .default(
                                         Text("Okay"))
                                         {
-                                            if paymentStatus == "approved"
-                                            {
-                                                self.selectedIndex = 0
-                                                print("PAYMENT APPROVED: GONE TO ORDERS TAB NUMBERED: \(self.selectedIndex)")
+                                            if paymentStatus == "approved" ||  paymentStatus == "pay_on_pickup" {
+                                                selectedIndex = 0
+                                                print("PAYMENT APPROVED: GONE TO ORDERS TAB NUMBERED: \(selectedIndex)")
                                             } else {
                                                 
                                             }
@@ -203,10 +143,12 @@ struct FinalPriceView: View {
                         
                     }
                         
-                        if payOnPickup == "yes" && viewStage == "1"{
+                    if payOnPickup == "yes" && updateOrderPayment.viewStage == "1"{
                             Button(action: {
-                                //print("collect_loc_raw: \(self.pickupLocation)")
-                                //getPriceManager.getPrice(collect_loc_raw: self.pickupLocation)
+                                updateOrderPayment.viewStage = "2"
+                                paymentStatus = "pay_on_pickup"
+                                paymentResponse = "Order successfull."
+                                updateOrderPayment.updateOrder(txnReference: self.txnReference, paymentStatus: "pay_on_pickup", paymentResponse: "User will pay on pickup", paymentMethod: "PAY-ON-PICKUP")
                             }) {
                                 HStack (spacing: 8) {
                                     Text("PAY ON PICKUP")
@@ -241,3 +183,88 @@ struct FinalPriceView_Previews: PreviewProvider {
         FinalPriceView(currentStage:  .constant("MainView"), selectedIndex: .constant(2), payOnline: "yes", payOnPickup:"yes", originalPrice: "$10", discountPercentage: "20%", discountAmount: "$2", priceFinal: "$8", priceFinalLong: "000000000010", txnReference: "Test Transaction", merchantId: "merchantId", merchantApiUser: "merchantApiUser", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", viewStage: "", paymentResponse: "", merchantTestApiKey: "merchantTestApiKey", paymentStatus: "")
     }
 }
+
+
+class updateOrderPaymentHttp: ObservableObject {
+    @Published var requestOngoing = false;
+    @Published var requestResponseStatus = "";
+    @Published var requestMessage = "";
+    @Published var viewStage = "1";
+    
+    
+    func updateOrder(txnReference: String, paymentStatus: String, paymentResponse: String, paymentMethod: String) {
+        
+        self.requestOngoing = true
+        guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/update-order-payment")
+        else {
+            print("Request failed 1")
+            return
+            
+        }
+        
+        let body: [String: String] =
+        [
+            "order_id": txnReference,
+            "order_payment_status": paymentStatus,
+            "order_payment_details": paymentResponse,
+            "order_payment_method": paymentMethod,
+            "purge": "1",
+            "app_type": "IOS",
+            "app_version_code": MeMawwApp.app_version
+        ]
+
+    let finalBody = try! JSONSerialization.data(withJSONObject: body)
+        
+        let auth_pass = "Bearer " + getSavedString("user_accesstoken")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = finalBody
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(auth_pass, forHTTPHeaderField: "Authorization")
+        
+
+        print("PAYMENT RECORDING ABOUT TO START REQUEST")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in guard let data = data else { return }
+        print("data: \(data)")
+            
+    do {
+    let json = try JSON(data: data)
+    if let status = json["status"].string {
+    //Now you got your value
+    
+    print("PAYMENT RECORDING STATUS:  \(status)" )
+        
+    DispatchQueue.main.async {
+        self.requestOngoing = false
+        if status == "success" {
+            self.requestResponseStatus = status
+            self.viewStage = "3"
+            
+        } else {
+            if let message = json["message"].string {
+                //Now you got your value
+                  print(status)
+                    self.viewStage = "3"
+                  
+                  DispatchQueue.main.async {
+                      self.requestMessage = message
+                  }
+              }
+            }
+          }
+         }
+        } catch  let error as NSError {
+            DispatchQueue.main.async {
+            self.requestOngoing = false
+            self.viewStage = "3"
+            self.requestMessage = "Failed to get messages"
+                print("Request failed 3")
+                print(error)
+            }
+    }
+            
+        }.resume()
+    }
+}
+    

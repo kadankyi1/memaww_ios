@@ -53,22 +53,13 @@ struct MainView: View {
                 
                 switch selectedIndex {
                 case 0:
-                    /*
-                     NavigationView {
-                        ScrollView {
-                            ForEach(0..<100) { num in
-                                Text("\(num)")
-                            }
-                        }
-                        .navigationTitle("Today Page")
-                    }
-                     */
+                    
                     OrdersView()
                 case 1:
                     //OrdersView()
                     InviteView(currentStage: .constant("MainView"), referral_code: getSavedString("user_referralcode"))
                 case 2:
-                    StartOrderView()
+                    StartOrderView(selectedIndex: Binding(projectedValue: $selectedIndex))
                     
                 case 3:
                     ContactUsView()
