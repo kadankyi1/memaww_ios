@@ -37,7 +37,9 @@ struct ProfileView: View {
                     GroupBox(){
                         
                         SettingsRowView(icon: "info", name: "", content: nil, linkLabel: "Service Policy", linkDestination: "https://memaww.com/privacy-policy")
-                        SettingsRowView(icon: "star", name: "", content: nil, linkLabel: "Rate The App", linkDestination: "https://www.facebook.com/theHoly.Generation20")
+                        Divider().padding(.vertical, 2)
+                        Text("Call MeMaww | +233 53 881 5095")
+                            .foregroundColor(Color.gray)
                         
                     }
                     Divider().padding(.vertical, 2)

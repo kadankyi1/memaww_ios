@@ -6,6 +6,25 @@
 //
 
 import SwiftUI
+import UIKit
+
+struct ShareSheet: UIViewControllerRepresentable {
+    var text: String
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let activityItems: [Any] = [text]
+        var activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityViewController.modalPresentationStyle = .custom // Set the modal presentation style
+        let detents: [UISheetPresentationController.Detent] = [.medium()]
+        activityViewController.sheetPresentationController?.detents = detents
+        return activityViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // No updates needed
+    }
+}
+
 
 struct InviteView: View {
     

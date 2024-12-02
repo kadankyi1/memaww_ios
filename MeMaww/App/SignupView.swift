@@ -31,10 +31,11 @@ struct SignupView: View {
         
     var body: some View {
         VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5) {
-            Image("ImageLogoBlue")
+            Image("MeMawwLogoWithName")
                 .resizable()
-                .scaledToFit()
-                .padding(20)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 250, height: 250)
+                .padding()
             /*
             Image("ImageLogoBlue")
                 .resizable()
@@ -68,33 +69,37 @@ struct SignupView: View {
             }
             
         
-        PickerTextField(data: ["Ghana","United Kingdom","USA","Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Congo","Cook Islands","Costa Rica","Cote d\'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faeroe Islands","Falkland Islands","Fiji","Finland","Former Yugoslav Republic of Macedonia","France","French Guiana","French Polynesia","French Southern Territories","Gabon","Georgia","Germany","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Heard Island and McDonald Islands","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","North Korea","Northern Marianas","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn Islands","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Sao Tome and Principe","Saint Helena","Saint Kitts and Nevis","Saint Lucia","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Svalbard and Jan Mayen","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","The Bahamas","The Gambia","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","Virgin Islands","Uganda","Ukraine","United Arab Emirates","United States Minor Outlying Islands","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Wallis and Futuna","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"],placeholder: "Select Country",lastSelectedIndex: self.$lastSelectedIndex)
-            .frame(height: 10, alignment: .bottom)
-            .scaleEffect(x: 1, y: 1, anchor: .center)
-            .padding(.horizontal, 50)
-            //.padding(.vertical, 100)
-            .padding(.bottom, -50)
-            .padding(.top, -25)
+        PickerTextField(data: ["Ghana","United Kingdom","USA","Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Congo","Cook Islands","Costa Rica","Cote d\'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faeroe Islands","Falkland Islands","Fiji","Finland","Former Yugoslav Republic of Macedonia","France","French Guiana","French Polynesia","French Southern Territories","Gabon","Georgia","Germany","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Heard Island and McDonald Islands","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","North Korea","Northern Marianas","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn Islands","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Sao Tome and Principe","Saint Helena","Saint Kitts and Nevis","Saint Lucia","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Svalbard and Jan Mayen","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","The Bahamas","The Gambia","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","Virgin Islands","Uganda","Ukraine","United Arab Emirates","United States Minor Outlying Islands","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Wallis and Futuna","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"],placeholder: "Ghana",lastSelectedIndex: self.$lastSelectedIndex)
+            .padding()
+            .frame(width: 300, height: 50)
+            .background(Color.black.opacity(0.05))
+            .cornerRadius(10)
             
-            TextField("First Name", text: $first_name).textFieldStyle(RoundedBorderTextFieldStyle.init())
-                .scaleEffect(x: 1, y: 1, anchor: .center)
-                .padding(.horizontal, 50)
-                .padding(.bottom, 10)
+        
+            TextField("Phone Number", text: $phone_number)
+                //.textFieldStyle(RoundedBorderTextFieldStyle.init())
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
             
-            TextField("Last Name", text: $last_name).textFieldStyle(RoundedBorderTextFieldStyle.init())
-                .scaleEffect(x: 1, y: 1, anchor: .center)
-                .padding(.horizontal, 50)
-                .padding(.bottom, 10)
+            TextField("First Name", text: $first_name)
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
             
-            TextField("Phone Number", text: $phone_number).textFieldStyle(RoundedBorderTextFieldStyle.init())
-                .scaleEffect(x: 1, y: 1, anchor: .center)
-                .padding(.horizontal, 50)
-                .padding(.bottom, 10)
+            TextField("Last Name", text: $last_name)
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
             
-            TextField("Invite Code (Optional)", text: $invite_code).textFieldStyle(RoundedBorderTextFieldStyle.init())
-                .scaleEffect(x: 1, y: 1, anchor: .center)
-                .padding(.horizontal, 50)
-                .padding(.bottom, 10)
+            TextField("Invite Code (Optional)", text: $invite_code)
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
             
             
             if manager.showLoginButton {
@@ -107,10 +112,9 @@ struct SignupView: View {
                     print("phone_number: \(self.phone_number)")
                     print("invite_code: \(self.invite_code)")
                     print("app_version_code: " + MeMawwApp.app_version)
-                    print("url: " + MeMawwApp.app_domain + "/memaww/public/api/v1/user/sign-in")
+                    print("url: " + MeMawwApp.app_domain + "/api/v1/user/sign-in")
                     //print("repeat_password: \(self.repeat_password)")
                     if networking == false {
-                        networking = true;
                         manager.checkDetails(
                             first_name: self.first_name,
                             last_name: self.last_name,
@@ -128,10 +132,17 @@ struct SignupView: View {
                     .padding(.vertical, 10)
                     .foregroundColor(Color("ColorMeMawwBlueDark"))
                 } //: BUTTON
+                .foregroundColor(.white)
+                .frame(width: 300, height: 50)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .padding(.bottom, 50)
+                /*
                 .accentColor(Color.accentColor)
                 .background(Color("ColorMeMawwBlueDark"))
                 .cornerRadius(20)
                 .padding(.bottom, 50)
+                 */
                 
             } else {
                 ProgressView()
@@ -188,7 +199,7 @@ class SignupHttpAuth: ObservableObject {
         phone_number: String,
         invite_code: String) {
         showLoginButton = false
-            guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/sign-in") else { return }
+            guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/sign-in") else { return }
             
         let body: [String: String] =
             [

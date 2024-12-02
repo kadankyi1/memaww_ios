@@ -12,14 +12,14 @@ struct InviteButtonView: View {
     
     @Binding var currentStage: String
     @AppStorage("appStage") var appStage: String?
+    @State var isPresentedShareInvitationText: Bool = false
     
     
     // MARK: - BODY
     var body: some View {
         
         Button(action: {
-            //appStage = "LoginView"
-            //self.currentStage = "SignupView"
+            isPresentedShareInvitationText = true
         }) {
             HStack (spacing: 8) {
                 Text("SEND INVITE")
@@ -32,6 +32,9 @@ struct InviteButtonView: View {
         .accentColor(Color.accentColor)
         .background(Color.white)
         .cornerRadius(20)
+        .sheet(isPresented: $isPresentedShareInvitationText) {
+            ShareSheet(text: "invitationText")
+        }
         
         
     }

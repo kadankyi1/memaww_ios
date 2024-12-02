@@ -27,6 +27,7 @@ struct FinalPriceView: View {
     var returnUrl: String
     var txnNarration: String
     var userEmail: String
+    var finalPriceIos: String
     @ObservedObject var model: MyModel = MyModel()
     @State var viewStage: String = "1"
     @State var paymentResponse: String = ""
@@ -39,7 +40,6 @@ struct FinalPriceView: View {
     
     // MARK: -- BODY
     var body: some View {
-        NavigationView {
             ScrollView(.vertical, showsIndicators: false){
                 VStack(spacing: 20){
                     // MARK: -- SECTION 2
@@ -69,7 +69,7 @@ struct FinalPriceView: View {
                                         "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
                                     ])
                                 //self.priceFinalLong
-                                checkout.initCheckout(transId:self.txnReference, amount: "000000000010", desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                checkout.initCheckout(transId:Int(self.txnReference) ?? 0, amount: finalPriceIos, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
@@ -79,18 +79,10 @@ struct FinalPriceView: View {
                                     
                                     let payment_status = string? ["status"] as! String
                                     paymentStatus = payment_status
-                                    let payment_reason = string? ["reason"] as! String
-                                    paymentResponse = payment_reason
-                                        
+                                    paymentResponse = "Payment failed"
                                     print("PAYMENT STATUS: " + paymentResponse)
-                                    
                                     print("PAYMENT RESULT END")
-                                    ///////////////////////////////////////
-                                    ///////////////////////////////////////
-                                    ///////////////////////////////////////
-                                    
-                                    updateOrderPayment.updateOrder(txnReference: self.txnReference, paymentStatus: paymentStatus, paymentResponse: paymentResponse, paymentMethod: "PaySwitch")
-                                
+                                    updateOrderPayment.viewStage == "3"
                                     
                                 }) // END OF initCheckout
 
@@ -174,13 +166,12 @@ struct FinalPriceView: View {
                 }
             } // SCROLLVIEW
             .padding(.horizontal, 20)
-        } // NAVIGATION
     }
 }
 
 struct FinalPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        FinalPriceView(currentStage:  .constant("MainView"), selectedIndex: .constant(2), payOnline: "yes", payOnPickup:"yes", originalPrice: "$10", discountPercentage: "20%", discountAmount: "$2", priceFinal: "$8", priceFinalLong: "000000000010", txnReference: "Test Transaction", merchantId: "merchantId", merchantApiUser: "merchantApiUser", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", viewStage: "", paymentResponse: "", merchantTestApiKey: "merchantTestApiKey", paymentStatus: "")
+        FinalPriceView(currentStage:  .constant("MainView"), selectedIndex: .constant(2), payOnline: "yes", payOnPickup:"yes", originalPrice: "$10", discountPercentage: "20%", discountAmount: "$2", priceFinal: "$8", priceFinalLong: "000000000010", txnReference: "Test Transaction", merchantId: "merchantId", merchantApiUser: "merchantApiUser", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", finalPriceIos: "000000000010", viewStage: "", paymentResponse: "", merchantTestApiKey: "merchantTestApiKey", paymentStatus: "")
     }
 }
 
@@ -195,7 +186,7 @@ class updateOrderPaymentHttp: ObservableObject {
     func updateOrder(txnReference: String, paymentStatus: String, paymentResponse: String, paymentMethod: String) {
         
         self.requestOngoing = true
-        guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/update-order-payment")
+        guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/update-order-payment")
         else {
             print("Request failed 1")
             return

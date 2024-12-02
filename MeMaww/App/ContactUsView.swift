@@ -141,7 +141,7 @@ class HttpGetmessages: ObservableObject {
     
 
     func getArticles(user_accesstoken: String) {
-        guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/get-my-messages")
+        guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/get-my-messages")
         else {
             print("Request failed 1")
             return
@@ -243,7 +243,7 @@ class HttpGetmessages: ObservableObject {
     // Add a message in Firestore
     func sendMessage(text: String) {
         
-            guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/send-message")
+            guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/send-message")
             else {
                 print("Request failed 1")
                 return

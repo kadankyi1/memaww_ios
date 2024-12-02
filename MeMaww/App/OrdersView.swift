@@ -81,7 +81,7 @@ class HttpGetOrders: ObservableObject {
     @Published var received_orders: [OrderModel] = []
 
     func getArticles(user_accesstoken: String) {
-        guard let url = URL(string: MeMawwApp.app_domain + "/memaww/public/api/v1/user/get-my-orders")
+        guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/get-my-orders")
         else {
             print("Request failed 1")
             return
@@ -132,7 +132,7 @@ class HttpGetOrders: ObservableObject {
                                 print(order_status)
                                 if let order_status_message = item["order_status_message"].string {
                                         print(order_status_message)
-                                        if let order_collection_location_raw = item["order_collection_location_raw"].string {
+                                        if let order_collection_location_raw = item["order_collection_contact_person_phone"].string {
                                             print(order_collection_location_raw)
                                         if let order_final_amt_with_currency = item["order_final_amt_with_currency"].string {
                                             print(order_final_amt_with_currency)

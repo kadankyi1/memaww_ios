@@ -23,8 +23,8 @@ struct MainView: View {
     @ObservedObject var updateContent = HttpUpdateContent()
     @State var now = Date()
     
-    let tabBarImageNames = ["list", "invite", "plus", "question", "user"]
-    let tabBarMenuNames = ["MyOrders", "Invite", "Start", "Support", "Profile"]
+    let tabBarImageNames = ["orders", "invite", "plus", "question", "user"]
+    let tabBarMenuNames = ["MyOrders", "Invite", "Start", "Subscribe", "Profile"]
     
     var body: some View {
         /*
@@ -53,19 +53,26 @@ struct MainView: View {
                 
                 switch selectedIndex {
                 case 0:
-                    
                     OrdersView()
+                    
                 case 1:
                     //OrdersView()
                     InviteView(currentStage: .constant("MainView"), referral_code: getSavedString("user_referralcode"))
+                    
                 case 2:
-                    StartOrderView(selectedIndex: Binding(projectedValue: $selectedIndex))
+                    OrdersMenuView(selectedIndex: Binding(projectedValue: $selectedIndex))
                     
                 case 3:
                     ContactUsView()
                     
                 case 4:
                     ProfileView(currentStage: .constant("MainView"), user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"),  user_phone: getSavedString("user_phone"), user_address: "Not Set", user_email:  "Not Set")
+                    
+                case 5:
+                    StartOrderView(selectedIndex: Binding(projectedValue: $selectedIndex))
+                    
+                case 6:
+                    SubscriptionView(selectedIndex: Binding(projectedValue: $selectedIndex))
                     
                     
                 default:

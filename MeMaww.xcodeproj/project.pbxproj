@@ -21,6 +21,11 @@
 		DF9F9F852BD6897300111DFD /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9F9F842BD6897300111DFD /* MessageData.swift */; };
 		DF9F9F872BD9200300111DFD /* FinalPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9F9F862BD9200300111DFD /* FinalPriceView.swift */; };
 		DF9F9F892BD9235D00111DFD /* FinalPriceListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9F9F882BD9235D00111DFD /* FinalPriceListItemView.swift */; };
+		DFA023312CF757C4003456A6 /* OrdersMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA023302CF757C4003456A6 /* OrdersMenuView.swift */; };
+		DFA023352CF84B19003456A6 /* OrdersMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA023342CF84B19003456A6 /* OrdersMenuItemView.swift */; };
+		DFA023372CF87C1C003456A6 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA023362CF87C1C003456A6 /* SubscriptionView.swift */; };
+		DFA023392CF88D6C003456A6 /* SubscriptionFinalPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA023382CF88D6C003456A6 /* SubscriptionFinalPriceView.swift */; };
+		DFA0233D2CFB2752003456A6 /* CurrentSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0233C2CFB2752003456A6 /* CurrentSubscriptionView.swift */; };
 		DFB783CE2BCFC58D00AB4252 /* SliderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783CD2BCFC58D00AB4252 /* SliderCardView.swift */; };
 		DFB783D12BCFC62B00AB4252 /* SliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783D02BCFC62B00AB4252 /* SliderModel.swift */; };
 		DFB783D32BCFC6BE00AB4252 /* SliderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783D22BCFC6BE00AB4252 /* SliderData.swift */; };
@@ -37,10 +42,11 @@
 		DFB783F02BCFD33000AB4252 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783EF2BCFD33000AB4252 /* OrdersView.swift */; };
 		DFB783F22BCFF83300AB4252 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783F12BCFF83300AB4252 /* PickerTextField.swift */; };
 		DFB783F42BCFF87600AB4252 /* SignupActionTextsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */; };
+		DFBB1DD92CF46E69002E606F /* TheTellerCheckout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBB1DD62CF46E5B002E606F /* TheTellerCheckout.framework */; };
+		DFBB1DDA2CF46E69002E606F /* TheTellerCheckout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DFBB1DD62CF46E5B002E606F /* TheTellerCheckout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DFBEB8892BFC6D190049C10B /* TrackProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEB8882BFC6D190049C10B /* TrackProgressView.swift */; };
 		DFBEB88B2BFCDF500049C10B /* CallBackRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBEB88A2BFCDF500049C10B /* CallBackRequestView.swift */; };
-		DFBEB8962BFE2EE40049C10B /* TheTellerCheckout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */; };
-		DFBEB8972BFE2EE40049C10B /* TheTellerCheckout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DFBEB89D2C0214290049C10B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFBEB89A2C0214290049C10B /* GoogleService-Info.plist */; };
 		DFDFA8082BD2889500C92D9A /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8072BD2889500C92D9A /* ContactUsView.swift */; };
 		DFDFA80A2BD295AE00C92D9A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8092BD295AE00C92D9A /* ProfileView.swift */; };
 		DFDFA80C2BD2960E00C92D9A /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA80B2BD2960E00C92D9A /* SettingsRowView.swift */; };
@@ -50,19 +56,35 @@
 		DFDFA8142BD4291500C92D9A /* OrderRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8132BD4291500C92D9A /* OrderRowView.swift */; };
 		DFDFA8162BD4E6E900C92D9A /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8152BD4E6E900C92D9A /* InviteView.swift */; };
 		DFDFA8182BD4EB3900C92D9A /* InviteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8172BD4EB3900C92D9A /* InviteButtonView.swift */; };
+		DFEE1B602C03422C00F70361 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DFEE1B5F2C03422C00F70361 /* FirebaseAnalytics */; };
+		DFEE1B622C03422C00F70361 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DFEE1B612C03422C00F70361 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DFBEB8922BFE2E970049C10B /* PBXContainerItemProxy */ = {
+		DFBB1DD52CF46E5B002E606F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */;
+			containerPortal = DFBB1DD02CF46E5B002E606F /* TheTellerCheckout.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1CC8621D2553283F000AA43C;
 			remoteInfo = TheTellerCheckout;
 		};
-		DFBEB8942BFE2E970049C10B /* PBXContainerItemProxy */ = {
+		DFBB1DD72CF46E5B002E606F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */;
+			containerPortal = DFBB1DD02CF46E5B002E606F /* TheTellerCheckout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CC862262553283F000AA43C;
+			remoteInfo = TheTellerCheckoutTests;
+		};
+		DFDEE75B2CE8A2FF00ADA953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFDEE7562CE8A2FF00ADA953 /* TheTellerCheckout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CC8621D2553283F000AA43C;
+			remoteInfo = TheTellerCheckout;
+		};
+		DFDEE75D2CE8A2FF00ADA953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFDEE7562CE8A2FF00ADA953 /* TheTellerCheckout.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1CC862262553283F000AA43C;
 			remoteInfo = TheTellerCheckoutTests;
@@ -70,13 +92,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DFBEB8982BFE2EE40049C10B /* Embed Frameworks */ = {
+		DFBB1DDB2CF46E69002E606F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DFBEB8972BFE2EE40049C10B /* TheTellerCheckout.framework in Embed Frameworks */,
+				DFBB1DDA2CF46E69002E606F /* TheTellerCheckout.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +121,11 @@
 		DF9F9F842BD6897300111DFD /* MessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		DF9F9F862BD9200300111DFD /* FinalPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalPriceView.swift; sourceTree = "<group>"; };
 		DF9F9F882BD9235D00111DFD /* FinalPriceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalPriceListItemView.swift; sourceTree = "<group>"; };
+		DFA023302CF757C4003456A6 /* OrdersMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersMenuView.swift; sourceTree = "<group>"; };
+		DFA023342CF84B19003456A6 /* OrdersMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersMenuItemView.swift; sourceTree = "<group>"; };
+		DFA023362CF87C1C003456A6 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		DFA023382CF88D6C003456A6 /* SubscriptionFinalPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionFinalPriceView.swift; sourceTree = "<group>"; };
+		DFA0233C2CFB2752003456A6 /* CurrentSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSubscriptionView.swift; sourceTree = "<group>"; };
 		DFB783CD2BCFC58D00AB4252 /* SliderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCardView.swift; sourceTree = "<group>"; };
 		DFB783D02BCFC62B00AB4252 /* SliderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderModel.swift; sourceTree = "<group>"; };
 		DFB783D22BCFC6BE00AB4252 /* SliderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderData.swift; sourceTree = "<group>"; };
@@ -114,9 +141,11 @@
 		DFB783EF2BCFD33000AB4252 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		DFB783F12BCFF83300AB4252 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		DFB783F32BCFF87600AB4252 /* SignupActionTextsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupActionTextsViews.swift; sourceTree = "<group>"; };
+		DFBB1DD02CF46E5B002E606F /* TheTellerCheckout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheTellerCheckout.xcodeproj; path = Frameworks/TheTeller/TheTellerCheckout.xcodeproj; sourceTree = "<group>"; };
 		DFBEB8882BFC6D190049C10B /* TrackProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackProgressView.swift; sourceTree = "<group>"; };
 		DFBEB88A2BFCDF500049C10B /* CallBackRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBackRequestView.swift; sourceTree = "<group>"; };
-		DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheTellerCheckout.xcodeproj; path = "../../Downloads/IOS_SDK-master/TheTellerCheckout.xcodeproj"; sourceTree = "<group>"; };
+		DFBEB89A2C0214290049C10B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DFDEE7562CE8A2FF00ADA953 /* TheTellerCheckout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TheTellerCheckout.xcodeproj; path = "../../../Downloads/IOS_SDK-master/TheTellerCheckout.xcodeproj"; sourceTree = "<group>"; };
 		DFDFA8062BD270CB00C92D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DFDFA8072BD2889500C92D9A /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		DFDFA8092BD295AE00C92D9A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -134,8 +163,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFBEB8962BFE2EE40049C10B /* TheTellerCheckout.framework in Frameworks */,
+				DFEE1B622C03422C00F70361 /* FirebaseMessaging in Frameworks */,
 				DFB783E12BCFCE3000AB4252 /* SwiftyJSON in Frameworks */,
+				DFBB1DD92CF46E69002E606F /* TheTellerCheckout.framework in Frameworks */,
+				DFEE1B602C03422C00F70361 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +178,7 @@
 			children = (
 				DF48F4582BCECCF900BE2891 /* MeMaww */,
 				DF48F4572BCECCF900BE2891 /* Products */,
-				DFBEB88C2BFE2E970049C10B /* Frameworks */,
+				DFDEE75F2CE8A33700ADA953 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +193,7 @@
 		DF48F4582BCECCF900BE2891 /* MeMaww */ = {
 			isa = PBXGroup;
 			children = (
+				DFDEE7562CE8A2FF00ADA953 /* TheTellerCheckout.xcodeproj */,
 				DFDFA8062BD270CB00C92D9A /* Info.plist */,
 				DFB783E22BCFCE8700AB4252 /* Utils */,
 				DFB783D82BCFCA0C00AB4252 /* Fonts */,
@@ -170,6 +202,7 @@
 				DFB783CB2BCFC55300AB4252 /* Views */,
 				DFB783CA2BCFC53200AB4252 /* App */,
 				DF48F45D2BCECD0000BE2891 /* Assets.xcassets */,
+				DFBEB89A2C0214290049C10B /* GoogleService-Info.plist */,
 				DF48F45F2BCECD0000BE2891 /* Preview Content */,
 			);
 			path = MeMaww;
@@ -196,6 +229,8 @@
 				DFDFA8092BD295AE00C92D9A /* ProfileView.swift */,
 				DFDFA8152BD4E6E900C92D9A /* InviteView.swift */,
 				DF9F9F802BD67DAF00111DFD /* StartOrderView.swift */,
+				DFA023302CF757C4003456A6 /* OrdersMenuView.swift */,
+				DFA023362CF87C1C003456A6 /* SubscriptionView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -218,6 +253,9 @@
 				DF9F9F882BD9235D00111DFD /* FinalPriceListItemView.swift */,
 				DFBEB8882BFC6D190049C10B /* TrackProgressView.swift */,
 				DFBEB88A2BFCDF500049C10B /* CallBackRequestView.swift */,
+				DFA023342CF84B19003456A6 /* OrdersMenuItemView.swift */,
+				DFA023382CF88D6C003456A6 /* SubscriptionFinalPriceView.swift */,
+				DFA0233C2CFB2752003456A6 /* CurrentSubscriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,21 +301,30 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		DFBEB88C2BFE2E970049C10B /* Frameworks */ = {
+		DFBB1DD12CF46E5B002E606F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DFBEB88E2BFE2E970049C10B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */,
-				DFBEB8952BFE2E970049C10B /* TheTellerCheckoutTests.xctest */,
+				DFBB1DD62CF46E5B002E606F /* TheTellerCheckout.framework */,
+				DFBB1DD82CF46E5B002E606F /* TheTellerCheckoutTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DFDEE7572CE8A2FF00ADA953 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DFDEE75C2CE8A2FF00ADA953 /* TheTellerCheckout.framework */,
+				DFDEE75E2CE8A2FF00ADA953 /* TheTellerCheckoutTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DFDEE75F2CE8A33700ADA953 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFBB1DD02CF46E5B002E606F /* TheTellerCheckout.xcodeproj */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +337,7 @@
 				DF48F4522BCECCF900BE2891 /* Sources */,
 				DF48F4532BCECCF900BE2891 /* Frameworks */,
 				DF48F4542BCECCF900BE2891 /* Resources */,
-				DFBEB8982BFE2EE40049C10B /* Embed Frameworks */,
+				DFBB1DDB2CF46E69002E606F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -299,6 +346,8 @@
 			name = MeMaww;
 			packageProductDependencies = (
 				DFB783E02BCFCE3000AB4252 /* SwiftyJSON */,
+				DFEE1B5F2C03422C00F70361 /* FirebaseAnalytics */,
+				DFEE1B612C03422C00F70361 /* FirebaseMessaging */,
 			);
 			productName = MeMaww;
 			productReference = DF48F4562BCECCF900BE2891 /* MeMaww.app */;
@@ -330,13 +379,18 @@
 			mainGroup = DF48F44D2BCECCF900BE2891;
 			packageReferences = (
 				DFB783DF2BCFCE3000AB4252 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = DF48F4572BCECCF900BE2891 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DFBEB88E2BFE2E970049C10B /* Products */;
-					ProjectRef = DFBEB88D2BFE2E970049C10B /* TheTellerCheckout.xcodeproj */;
+					ProductGroup = DFDEE7572CE8A2FF00ADA953 /* Products */;
+					ProjectRef = DFDEE7562CE8A2FF00ADA953 /* TheTellerCheckout.xcodeproj */;
+				},
+				{
+					ProductGroup = DFBB1DD12CF46E5B002E606F /* Products */;
+					ProjectRef = DFBB1DD02CF46E5B002E606F /* TheTellerCheckout.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -347,18 +401,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DFBEB8932BFE2E970049C10B /* TheTellerCheckout.framework */ = {
+		DFBB1DD62CF46E5B002E606F /* TheTellerCheckout.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = TheTellerCheckout.framework;
-			remoteRef = DFBEB8922BFE2E970049C10B /* PBXContainerItemProxy */;
+			remoteRef = DFBB1DD52CF46E5B002E606F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DFBEB8952BFE2E970049C10B /* TheTellerCheckoutTests.xctest */ = {
+		DFBB1DD82CF46E5B002E606F /* TheTellerCheckoutTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = TheTellerCheckoutTests.xctest;
-			remoteRef = DFBEB8942BFE2E970049C10B /* PBXContainerItemProxy */;
+			remoteRef = DFBB1DD72CF46E5B002E606F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DFDEE75C2CE8A2FF00ADA953 /* TheTellerCheckout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TheTellerCheckout.framework;
+			remoteRef = DFDEE75B2CE8A2FF00ADA953 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DFDEE75E2CE8A2FF00ADA953 /* TheTellerCheckoutTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TheTellerCheckoutTests.xctest;
+			remoteRef = DFDEE75D2CE8A2FF00ADA953 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -369,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFB783DC2BCFCBE800AB4252 /* splashfont.ttf in Resources */,
+				DFBEB89D2C0214290049C10B /* GoogleService-Info.plist in Resources */,
 				DF48F4612BCECD0000BE2891 /* Preview Assets.xcassets in Resources */,
 				DF48F45E2BCECD0000BE2891 /* Assets.xcassets in Resources */,
 			);
@@ -396,6 +465,7 @@
 				DFB783F22BCFF83300AB4252 /* PickerTextField.swift in Sources */,
 				DF9F9F7F2BD672A000111DFD /* MessagesManager.swift in Sources */,
 				DFB783E62BCFCECA00AB4252 /* KeyboardHost.swift in Sources */,
+				DFA023392CF88D6C003456A6 /* SubscriptionFinalPriceView.swift in Sources */,
 				DFB783D32BCFC6BE00AB4252 /* SliderData.swift in Sources */,
 				DFBEB88B2BFCDF500049C10B /* CallBackRequestView.swift in Sources */,
 				DFDFA8182BD4EB3900C92D9A /* InviteButtonView.swift in Sources */,
@@ -409,12 +479,16 @@
 				DF9F9F852BD6897300111DFD /* MessageData.swift in Sources */,
 				DFDFA8122BD3FB8200C92D9A /* OrderData.swift in Sources */,
 				DFB783E82BCFCEE400AB4252 /* GeometryGetter.swift in Sources */,
+				DFA023312CF757C4003456A6 /* OrdersMenuView.swift in Sources */,
 				DF9F9F7D2BD66EC100111DFD /* MessageField.swift in Sources */,
 				DF48F45A2BCECCF900BE2891 /* MeMawwApp.swift in Sources */,
 				DF9F9F762BD66BC200111DFD /* Message.swift in Sources */,
 				DFB783EC2BCFD13F00AB4252 /* SignupView.swift in Sources */,
+				DFA023372CF87C1C003456A6 /* SubscriptionView.swift in Sources */,
 				DFDFA80A2BD295AE00C92D9A /* ProfileView.swift in Sources */,
 				DF9F9F892BD9235D00111DFD /* FinalPriceListItemView.swift in Sources */,
+				DFA0233D2CFB2752003456A6 /* CurrentSubscriptionView.swift in Sources */,
+				DFA023352CF84B19003456A6 /* OrdersMenuItemView.swift in Sources */,
 				DFB783CE2BCFC58D00AB4252 /* SliderCardView.swift in Sources */,
 				DFDFA8102BD3F81300C92D9A /* OrderModel.swift in Sources */,
 				DFB783D72BCFC86600AB4252 /* OnboardingView.swift in Sources */,
@@ -640,6 +714,14 @@
 				version = 5.0.2;
 			};
 		};
+		DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -647,6 +729,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFB783DF2BCFCE3000AB4252 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		DFEE1B5F2C03422C00F70361 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		DFEE1B612C03422C00F70361 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
