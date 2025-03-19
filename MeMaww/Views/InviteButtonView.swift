@@ -13,6 +13,7 @@ struct InviteButtonView: View {
     @Binding var currentStage: String
     @AppStorage("appStage") var appStage: String?
     @State var isPresentedShareInvitationText: Bool = false
+    @State var inviteCode: String
     
     
     // MARK: - BODY
@@ -33,7 +34,7 @@ struct InviteButtonView: View {
         .background(Color.white)
         .cornerRadius(20)
         .sheet(isPresented: $isPresentedShareInvitationText) {
-            ShareSheet(text: "invitationText")
+            ShareSheet(text: "You and I will get a discount on our laundry if you use my invite code " + inviteCode + " to register on the MeMaww Laundry App and place your first order")
         }
         
         
@@ -45,7 +46,7 @@ struct InviteButtonView: View {
 
 struct InviteButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        InviteButtonView(currentStage: .constant("LoginView"))
+        InviteButtonView(currentStage: .constant("LoginView"), inviteCode: "S-A-M-P-L-E-CODE")
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
     }

@@ -19,7 +19,6 @@ struct OrdersView: View {
 
     // MARK: - BODY
     var body: some View {
-        NavigationView {
             if orders_http_manager.requestMade {
                 if (orders_http_manager.status == "success"){
                     List {
@@ -44,14 +43,17 @@ struct OrdersView: View {
                     })
                 }
             } else {
-                ProgressView()
-                .onAppear(perform: {
-                    print("Access Token request starting")
-                    orders_http_manager.getArticles(user_accesstoken: access_token)
-                })
+                VStack(){
+                    
+                Spacer()
+                    ProgressView()
+                    .onAppear(perform: {
+                        print("Access Token request starting")
+                        orders_http_manager.getArticles(user_accesstoken: access_token)
+                    })
+                Spacer()
             }
-            
-        } // NAVIGATION
+            }
     }
 }
 

@@ -19,7 +19,6 @@ struct ProfileView: View {
     
     // MARK: -- BODY
     var body: some View {
-        NavigationView {
             ScrollView(.vertical, showsIndicators: false){
                 VStack(spacing: 20){
                     // MARK: -- SECTION 2
@@ -50,7 +49,7 @@ struct ProfileView: View {
                 }
             } // SCROLLVIEW
             .padding(.horizontal, 20)
-        } // NAVIGATION
+            .padding(.top, 30)
     }
 }
 

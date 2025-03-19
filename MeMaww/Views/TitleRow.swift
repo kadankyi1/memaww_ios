@@ -11,6 +11,8 @@ struct TitleRow: View {
     var name = "MeMaww Support"
     
     var body: some View {
+        
+        VStack(){
         HStack(spacing: 5) {
             
             
@@ -25,19 +27,28 @@ struct TitleRow: View {
                     .font(.headline).bold()
                     .foregroundColor(Color.white)
                 
-                Text("If it is urgent, call us on +233536065535")
+                Text("Chat is currently unavailable. Kindly call us on +233538815095")
                     .font(.caption)
                     .foregroundColor(Color.white)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-            Image(systemName: "phone.fill")
-                .foregroundColor(.gray)
-                .padding(10)
-                .background(.white)
-                .cornerRadius(50)
-        }
+            
+            Button {
+                let tel = "tel://+233538815095"
+                let formattedString = tel
+                guard let url = URL(string: formattedString) else { return }
+                UIApplication.shared.open(url)
+            } label: {
+                Image(systemName: "phone.fill")
+                    .foregroundColor(.gray)
+                    .padding(10)
+                    .background(.white)
+                    .cornerRadius(50)
+                }
+            }
         .padding()
+        }
     }
 }
 

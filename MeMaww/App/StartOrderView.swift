@@ -5,12 +5,18 @@
 //  Created by Dankyi Anno Kwaku on 4/22/24.
 //
 
+import MapKit
 import SwiftUI
 import SwiftyJSON
 
 struct StartOrderView: View {
+    @StateObject private var viewModel = ContentViewModel()
+    
     @State var stepper: Int = 0
+    
+    @State private var pickupLocationFieldToggle = false
     @State private var pickupLocation = ""
+    @State private var pickupLocationGPS = ""
     @State private var contactPhoneNumber = ""
     
     @State private var pickupTime = ""
@@ -31,7 +37,7 @@ struct StartOrderView: View {
     
     @State var shouldShowModal = false
     
-    @State private var specialInstructions = ""
+    @State private var specialInstructions = "Special Instructions"
     @State private var discountCode = ""
 
     @ObservedObject var getPriceManager = getPriceHttp()
@@ -41,6 +47,7 @@ struct StartOrderView: View {
         
         NavigationView {
                 VStack(spacing: 0) {
+                    
                     //CallBackRequestView()
                         //.padding()
                         //.frame(width: .infinity, height: 50)
@@ -52,8 +59,37 @@ struct StartOrderView: View {
                                                            priceFinalLong: getPriceManager.priceFinalLong, txnReference: getPriceManager.txnReference, merchantId: getPriceManager.merchantId, merchantApiUser: getPriceManager.merchantApiUser, merchantApiKey: getPriceManager.merchantApiKey, returnUrl: getPriceManager.returnUrl, txnNarration: getPriceManager.txnNarration, userEmail: getPriceManager.userEmail, finalPriceIos: getPriceManager.priceFinalIOS, viewStage: "1", paymentResponse: "", merchantTestApiKey: getPriceManager.merchantTestApiKey, paymentStatus: ""), isActive: $getPriceManager.requestStatusSuccessful){ }
                         } else {
                             Form {
+                                Section(header: Text("How We Wash")){
+                                    ProfileListItemSmallerText(currentStage: .constant("MainView"),  icon: "We offer Machine Wash but if an item requires special care, we will reach out to inform and bill you.",  name: "")
+                                }
+                                
                                 Section(header: Text("Collection & DropOff")){
-                                    TextField("Pickup Location", text: $pickupLocation)
+                                    HStack(){
+                                        TextField("Pickup Location", text: $pickupLocation)
+                                            .disabled(pickupLocationFieldToggle)
+                                            .onAppear {
+                                                viewModel.checkIfLocationServicesIsEnabled()
+                                                print("Checked for permission")
+                                            }
+                                        Spacer()
+                                        Button(action: {
+                                                print("viewModel.region 3")
+                                                print(viewModel.region)
+                                                print(viewModel.region.center.latitude)
+                                                print(viewModel.region.center.longitude)
+                                                pickupLocationGPS = String(viewModel.region.center.latitude) + "," + String(viewModel.region.center.longitude)
+                                                pickupLocation = "Current Location"
+                                                pickupLocationFieldToggle = true
+                                                print("viewModel.region 4")
+                                            }, label: {
+                                                Image("map")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 35, height: 35)
+                                                    //.padding(20)
+                                            }
+                                        )
+                                    }
                                     TextField("Contact Phone", text: $contactPhoneNumber)
                                     
                                     PickerTextField(data: ["7am - 8am","12pm - 1pm","4pm-5pm"],placeholder: "7am - 8am",lastSelectedIndex: self.$lastSelectedTimeIndex)
@@ -63,28 +99,52 @@ struct StartOrderView: View {
                                         .cornerRadius(10)
                                 }
                                 Section(header: Text("Lightweight Items")){
+                                    Text("Napkins | Underwear | Anything Under 0.1kg")
+                                        .font(.footnote)
+                                        .foregroundColor(Color.black)
                                     Stepper("Wash & Fold: \(lightWeightWashAndFold) items", value: $lightWeightWashAndFold, in: 0...100)
                                     Stepper("Wash & Iron: \(lightWeightWashAndIron) items", value: $lightWeightWashAndIron, in: 0...100)
                                     Stepper("Just & Iron: \(lightWeightJustIron) items", value: $lightWeightJustIron, in: 0...100)
                                 }
                                 Section(header: Text("Mediumweight Items")){
+                                    Text("Shirts | Trousers | Anything Between 0.1kg - 0.7kg")
+                                        .font(.footnote)
+                                        .foregroundColor(Color.black)
                                     Stepper("Wash & Fold: \(mediumWeightWashAndFold) items", value: $mediumWeightWashAndFold, in: 0...100)
                                     Stepper("Wash & Iron: \(mediumWeightWashAndIron) items", value: $mediumWeightWashAndIron, in: 0...100)
                                     Stepper("Just & Iron: \(mediumWeightJustIron) items", value: $mediumWeightJustIron, in: 0...100)
                                 }
                                 Section(header: Text("Bulky Items")){
+                                    Text("Duvets | Bedsheets | Anything Above 0.8kg")
+                                        .font(.footnote)
+                                        .foregroundColor(Color.black)
                                     Stepper("Wash & Fold: \(bulkyItemsWashAndFold) items", value: $bulkyItemsWashAndFold, in: 0...100)
                                     Stepper("Wash & Iron: \(bulkyItemsWashAndIron) items", value: $bulkyItemsWashAndIron, in: 0...100)
                                 }
                                 Section(header: Text("Anything Else?")){
-                                    TextField("Any Special Instructions", text: $specialInstructions)
+                                    
+                                    TextEditor(text: $specialInstructions)
+                                        .foregroundStyle(.black) // Set your text color
+                                        .frame(height: 50) // Set the height you want for your field
+                                        .cornerRadius(8.0)
+                                        .onTapGesture(perform: {
+                                            if specialInstructions == "Special Instructions" {
+                                                self.specialInstructions = ""
+                                            }
+                                        })
+                                        .onChange(of: specialInstructions) { newValue in
+                                            if newValue.count > 200 {
+                                                self.specialInstructions = String(newValue.prefix(200))
+                                            }
+                                        }
+                                    //TextField("Any Special Instructions", text: $specialInstructions)
                                     TextField("Discount Code", text: $discountCode)
                                 }
                                 
                                     Button(action: {
                                         pickupTime = allotedPickupTimes[lastSelectedTimeIndex ?? 0]
                                         print("collect_loc_raw: \(self.pickupLocation)")
-                                        print("collect_loc_gps: EMPTY")
+                                        print("collect_loc_gps: \(self.pickupLocationGPS)")
                                         print("collect_datetime: \(self.pickupTime)")
                                         print("contact_person_phone: \(self.contactPhoneNumber)")
                                         print("drop_loc_raw: EMPTY")
@@ -101,7 +161,7 @@ struct StartOrderView: View {
                                         print("special_instructions: \(self.specialInstructions)")
                                         print("discount_code: \(self.discountCode)")
                                         
-                                        getPriceManager.getPrice(collect_loc_raw: self.pickupLocation, collect_loc_gps: "", collect_datetime: self.pickupTime, contact_person_phone: self.contactPhoneNumber, drop_loc_raw: "", drop_loc_gps: "", drop_datetime: "", smallitems_justwash_quantity: String(self.lightWeightWashAndFold), smallitems_washandiron_quantity: String(self.lightWeightWashAndIron), smallitems_justiron_quantity: String(self.lightWeightJustIron), mediumitems_justwash_quantity: String(self.mediumWeightWashAndFold), mediumitems_washandiron_quantity: String(self.mediumWeightWashAndIron), mediumitems_justiron_quantity: String(self.mediumWeightJustIron), bigitems_justwash_quantity: String(self.bulkyItemsWashAndFold), bigitems_washandiron_quantity: String(self.bulkyItemsWashAndIron), special_instructions: self.specialInstructions, discount_code: self.discountCode)
+                                        getPriceManager.getPrice(collect_loc_raw: self.pickupLocation, collect_loc_gps: self.pickupLocationGPS, collect_datetime: self.pickupTime, contact_person_phone: self.contactPhoneNumber, drop_loc_raw: "", drop_loc_gps: "", drop_datetime: "", smallitems_justwash_quantity: String(self.lightWeightWashAndFold), smallitems_washandiron_quantity: String(self.lightWeightWashAndIron), smallitems_justiron_quantity: String(self.lightWeightJustIron), mediumitems_justwash_quantity: String(self.mediumWeightWashAndFold), mediumitems_washandiron_quantity: String(self.mediumWeightWashAndIron), mediumitems_justiron_quantity: String(self.mediumWeightJustIron), bigitems_justwash_quantity: String(self.bulkyItemsWashAndFold), bigitems_washandiron_quantity: String(self.bulkyItemsWashAndIron), special_instructions: self.specialInstructions, discount_code: self.discountCode)
                                     }) {
                                         HStack (spacing: 8) {
                                             Text("GET PRICE")
@@ -356,3 +416,49 @@ class getPriceHttp: ObservableObject {
     }
     
 }
+
+final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan (latitudeDelta: 0.05, longitudeDelta: 0.05))
+    
+    var locationManager: CLLocationManager?
+    
+    func checkIfLocationServicesIsEnabled(){
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager = CLLocationManager()
+            locationManager!.delegate = self
+        } else {
+            print("Your location is off. Please turn it on")
+        }
+    }
+    
+    private func checkLocationAuthorization(){
+        guard let locationManager = locationManager else { return }
+        
+        switch locationManager.authorizationStatus {
+            
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            
+            case .restricted:
+                print("Your location is restricted likely due to parental controls")
+            
+            case .denied:
+                print("You have denied permission to your location. Go to settings to change it")
+            
+            case .authorizedAlways, .authorizedWhenInUse:
+            print("Your location is available to app")
+            //region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            
+            @unknown default:
+            break
+            
+        }
+
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+    }
+            
+}
+

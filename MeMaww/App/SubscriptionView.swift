@@ -4,17 +4,22 @@
 //
 //  Created by Dankyi Anno Kwaku on 11/28/24.
 //
-
+import Foundation
+import CoreLocation
 import SwiftUI
 import SwiftyJSON
 
 struct SubscriptionView: View {
+    @StateObject private var viewModel = ContentViewModel()
     @State var stepper: Int = 0
     
     @State private var numOfPeople = 1
     @State private var numOfMonths = 1
     
+    @State private var pickupLocationFieldToggle = false
+    @State private var pickupLocationGPS = ""
     @State private var pickupLocation = ""
+    @State private var pickupLocationFinal = ""
     @State private var pickupDay = ""
     @State private var pickupTime = ""
     
@@ -46,7 +51,61 @@ struct SubscriptionView: View {
                                     Stepper("Number of Months: \(numOfMonths) ", value: $numOfMonths, in: 1...12)
                                 }
                                 Section(header: Text("Pickup")){
-                                    TextField("Pickup Location", text: $pickupLocation)
+                                    
+                                        HStack(){
+                                            TextField("Pickup Location", text: $pickupLocation)
+                                                .disabled(pickupLocationFieldToggle)
+                                                .onAppear {
+                                                    viewModel.checkIfLocationServicesIsEnabled()
+                                                    print("Checked for permission")
+                                                }
+                                            Spacer()
+                                            Button(action: {
+                                                    print("viewModel.region 3")
+                                                    print(viewModel.region)
+                                                    print(viewModel.region.center.latitude)
+                                                    print(viewModel.region.center.longitude)
+                                                    pickupLocationGPS = String(viewModel.region.center.latitude) + "," + String(viewModel.region.center.longitude)
+                                                    pickupLocation = "Current Location"
+                                                    pickupLocationFieldToggle = true
+                                                    print("viewModel.region 4")
+                                                }, label: {
+                                                    Image("map")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 35, height: 35)
+                                                        //.padding(20)
+                                                }
+                                            )
+                                        }
+                                    
+                                    /*HStack(){
+                                        TextField("Pickup Location", text: $pickupLocation)
+                                        Button(action: {
+                                            locationManager.checkLocationAuthorization()
+                                            if let coordinate = locationManager.lastKnownLocation {
+                                                self.pickupCoordinates = "Current Location";
+                                                
+                                                    print("coordinate.latitude: \(coordinate.latitude)")
+                                                    print("coordinate.longitude: \(coordinate.longitude)")
+                                                            //Text("Latitude: \(coordinate.latitude)")
+                                                           // Text("Longitude: \(coordinate.longitude)")
+                                                } else {
+                                                    Text("Unknown Location")
+                                                }
+                                        }, label: {
+                                            Image("ohg")
+                                               //.font(.system(size: 25, weight: .bold))
+                                               .renderingMode(.template)
+                                               .colorMultiply(.init(white: 0.8))
+                                               //.foregroundColor(.red)
+                                               .foregroundColor(.init(white: 0.8))
+                                               .padding(.leading, 20)
+                                               .padding(.top, 5)
+                                            }
+                                        )
+                                    
+                                    }*/
                                     
                                     PickerTextField(data: ["Saturday","Sunday","Monday", "Tuesday", "Wednesday", "Thursady", "Friday"],placeholder: "Saturday",lastSelectedIndex: self.$lastSelectedDayIndex)
                                         .padding()
@@ -64,14 +123,20 @@ struct SubscriptionView: View {
                                     Button(action: {
                                         pickupTime = allotedPickupTimes[lastSelectedTimeIndex ?? 0]
                                         pickupDay = allotedPickupDays[lastSelectedDayIndex ?? 0]
+                                        if(pickupLocationGPS == ""){
+                                            pickupLocationFinal = pickupLocation
+                                        } else {
+                                            pickupLocationFinal = pickupLocationGPS
+                                        }
                                         print("numOfPeople: \(self.numOfPeople)")
                                         print("numOfMonths: \(self.numOfMonths)")
                                         
-                                        print("pickupLocation: \(self.pickupLocation)")
+                                        print("pickupLocationGPS: \(self.pickupLocationGPS)")
+                                        print("pickupLocationFinal: \(self.pickupLocationFinal)")
                                         print("pickupDay: \(self.pickupDay)")
                                         print("pickupTime: \(self.pickupTime)")
                                         
-                                        getPriceManager.getPrice(num_of_ppl: String(self.numOfPeople), num_of_months: String(self.numOfMonths), pickup_day: pickupDay, pickup_time: self.pickupTime, pickup_location: pickupLocation)
+                                        getPriceManager.getPrice(num_of_ppl: String(self.numOfPeople), num_of_months: String(self.numOfMonths), pickup_day: pickupDay, pickup_time: self.pickupTime, pickup_location: pickupLocationFinal)
                                     }) {
                                         HStack (spacing: 8) {
                                             Text("GET SUBSCRIPTION PRICE")

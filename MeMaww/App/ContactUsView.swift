@@ -28,14 +28,14 @@ struct ContactUsView: View {
                 if (messages_http_manager.status == "success"){
                              ScrollViewReader { proxy in
                                 ScrollView {
-                                    ForEach(messages_http_manager.received_messages, id: \.id) { message in
+                                    /*ForEach(messages_http_manager.received_messages, id: \.id) { message in
                                         MessageBubble(message: message)
                                     }
-                                    /*
-                                    ForEach(messages_http_manager.received_messages) { item in
+                                    */
+                                    ForEach(messages) { item in
                                         MessageBubble(message: item)
                                     }
-                                    */
+                                    //if(ad)
                                     
                                     Text("").id("bottomID")
                                 }.onAppear{
@@ -95,13 +95,14 @@ struct ContactUsView: View {
             }
             HStack {
                 // Custom text field created below
-                CustomTextField(placeholder: Text("Enter your message here"), text: $message)
+                CustomTextField(placeholder: Text("Chat Not Available"), text: $message)
                     .frame(height: 52)
                     .disableAutocorrection(true)
+                    .disabled(true)
 
                 Button {
-                    messages_http_manager.sendMessage(text: message)
-                    message = ""
+                    //messages_http_manager.sendMessage(text: message)
+                    //message = ""
                 } label: {
                     Image(systemName: "paperplane.fill")
                         .foregroundColor(.white)
@@ -326,45 +327,3 @@ class HttpGetmessages: ObservableObject {
     }
 }
 
-
-
-/*
-struct ContactUsView: View {
-    @StateObject var messagesManager = MessagesManager()
-    
-    var body: some View {
-        VStack {
-            VStack {
-                TitleRow()
-                
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        ForEach(messagesManager.messages, id: \.id) { message in
-                            MessageBubble(message: message)
-                        }
-                    }
-                    .padding(.top, 10)
-                    .background(.white)
-                    .cornerRadius(30, corners: [.topLeft, .topRight]) // Custom cornerRadius modifier added in Extensions file
-                    .onChange(of: messagesManager.lastMessageId) { id in
-                        // When the lastMessageId changes, scroll to the bottom of the conversation
-                        withAnimation {
-                            proxy.scrollTo(id, anchor: .bottom)
-                        }
-                    }
-                }
-            }
-            .background(Color("Peach"))
-            
-            MessageField()
-                .environmentObject(messagesManager)
-        }
-    }
-}
-
-struct ContactUsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactUsView()
-    }
-}
-*/

@@ -76,30 +76,50 @@ struct SignupView: View {
             .cornerRadius(10)
             
         
-            TextField("Phone Number", text: $phone_number)
-                //.textFieldStyle(RoundedBorderTextFieldStyle.init())
+            TextField("Phone Number(0244123456)", text: $phone_number)
+                .keyboardType(.numberPad)
                 .padding()
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
+                .onChange(of: phone_number) { newValue in
+                    if newValue.count > 10 {
+                        self.phone_number = String(newValue.prefix(10))
+                    }
+                }
             
             TextField("First Name", text: $first_name)
                 .padding()
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
+                .onChange(of: first_name) { newValue in
+                    if newValue.count > 20 {
+                        self.first_name = String(newValue.prefix(20))
+                    }
+                }
             
             TextField("Last Name", text: $last_name)
                 .padding()
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
+                .onChange(of: last_name) { newValue in
+                    if newValue.count > 20 {
+                        self.last_name = String(newValue.prefix(20))
+                    }
+                }
             
             TextField("Invite Code (Optional)", text: $invite_code)
                 .padding()
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
+                .onChange(of: invite_code) { newValue in
+                    if newValue.count > 10 {
+                        self.invite_code = String(newValue.prefix(10))
+                    }
+                }
             
             
             if manager.showLoginButton {

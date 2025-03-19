@@ -69,7 +69,7 @@ struct FinalPriceView: View {
                                         "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
                                     ])
                                 //self.priceFinalLong
-                                checkout.initCheckout(transId:Int(self.txnReference) ?? 0, amount: finalPriceIos, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                checkout.initCheckout(transId:self.txnReference, amount: "000000000010", desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
@@ -79,10 +79,9 @@ struct FinalPriceView: View {
                                     
                                     let payment_status = string? ["status"] as! String
                                     paymentStatus = payment_status
-                                    paymentResponse = "Payment failed"
-                                    print("PAYMENT STATUS: " + paymentResponse)
+                                    updateOrderPayment.viewStage = "3"
+                                    print("PAYMENT STATUS: " + paymentStatus)
                                     print("PAYMENT RESULT END")
-                                    updateOrderPayment.viewStage == "3"
                                     
                                 }) // END OF initCheckout
 
@@ -107,10 +106,6 @@ struct FinalPriceView: View {
                             
                             
                                 ProgressView()
-                                .onAppear(perform: {
-                                    //print("Access Token request starting")
-                                    //messages_http_manager.getArticles(user_accesstoken: access_token)
-                                })
                             
                         }
                         
@@ -119,15 +114,19 @@ struct FinalPriceView: View {
                             VStack {}
                                 .alert(isPresented: $model.isValid, content: {
                                 Alert(title: Text("Order"),
-                                      message: Text(paymentResponse),
+                                      message: Text((paymentStatus == "approved") ? "Payment successful. We will be on our way to pickup your items" : "Payment failed. If you made the payment and this is an error, please contact us"),
                                       dismissButton: .default(
                                         Text("Okay"))
                                         {
                                             if paymentStatus == "approved" ||  paymentStatus == "pay_on_pickup" {
+                                                
+                                                updateOrderPayment.updateOrder(txnReference: self.txnReference, paymentStatus: paymentStatus, paymentResponse: "Check from PaySwitch", paymentMethod: "PaySwitch")
                                                 selectedIndex = 0
                                                 print("PAYMENT APPROVED: GONE TO ORDERS TAB NUMBERED: \(selectedIndex)")
                                             } else {
-                                                
+                                                updateOrderPayment.updateOrder(txnReference: self.txnReference, paymentStatus: "failed", paymentResponse: "Failed to pay", paymentMethod: "failed")
+                                                selectedIndex = 2
+                                                selectedIndex = 5
                                             }
                                             
                                         })
@@ -138,7 +137,7 @@ struct FinalPriceView: View {
                     if payOnPickup == "yes" && updateOrderPayment.viewStage == "1"{
                             Button(action: {
                                 updateOrderPayment.viewStage = "2"
-                                paymentStatus = "pay_on_pickup"
+                                paymentStatus = "approved"
                                 paymentResponse = "Order successfull."
                                 updateOrderPayment.updateOrder(txnReference: self.txnReference, paymentStatus: "pay_on_pickup", paymentResponse: "User will pay on pickup", paymentMethod: "PAY-ON-PICKUP")
                             }) {
@@ -203,7 +202,12 @@ class updateOrderPaymentHttp: ObservableObject {
             "app_type": "IOS",
             "app_version_code": MeMawwApp.app_version
         ]
-
+        
+        print("order_id: \(txnReference)")
+        print("order_payment_status: \(paymentStatus)")
+        print("order_payment_details: \(paymentResponse)")
+        print("order_payment_method: \(paymentMethod)")
+        
     let finalBody = try! JSONSerialization.data(withJSONObject: body)
         
         let auth_pass = "Bearer " + getSavedString("user_accesstoken")
@@ -235,7 +239,7 @@ class updateOrderPaymentHttp: ObservableObject {
         } else {
             if let message = json["message"].string {
                 //Now you got your value
-                  print(status)
+                  print(message)
                     self.viewStage = "3"
                   
                   DispatchQueue.main.async {

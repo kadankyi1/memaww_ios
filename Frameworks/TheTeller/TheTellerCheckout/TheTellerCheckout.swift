@@ -59,7 +59,7 @@ public class TheTellerCheckout {
         
         // send request to API to generate checkout url and token
         
-        private func doCheckout(transId transaction_id: Int,amount: String, desc: String,customerEmail customer_email: String,paymentMethod: String?, paymentCurrency: String?,callback : ((_ json: [String: Any]?, _ error: Error?) -> Void)? = nil) {
+        private func doCheckout(transId transaction_id: String,amount: String, desc: String,customerEmail customer_email: String,paymentMethod: String?, paymentCurrency: String?,callback : ((_ json: [String: Any]?, _ error: Error?) -> Void)? = nil) {
             
             let basicAuth = String(format: "%@:%@", self.config["apiuser"] as! CVarArg, self.config["isProduction"] as AnyObject? === true as AnyObject ?self.config["API_Key_Prod"] as! CVarArg : self.config["API_Key_Test"] as! CVarArg).data(using: .utf8)?.base64EncodedString(options: .init(rawValue: 0))
             let endPoint = self.config["isProduction"] as AnyObject? === true as AnyObject ? self.LiveEndPoint : self.TestEndpoint
@@ -93,7 +93,7 @@ public class TheTellerCheckout {
         }
         
         // initialize checkout
-        public func initCheckout(transId transaction_id: Int, amount: String, desc: String,customerEmail customer_email: String, paymentMethod: String?, paymentCurrency: String?, callback : ((_ json: [String: Any]?, _ error: Error?) -> Void)? = nil){
+        public func initCheckout(transId transaction_id: String, amount: String, desc: String,customerEmail customer_email: String, paymentMethod: String?, paymentCurrency: String?, callback : ((_ json: [String: Any]?, _ error: Error?) -> Void)? = nil){
             self.doCheckout(transId:transaction_id,amount:amount,desc:desc, customerEmail:customer_email,paymentMethod: paymentMethod,paymentCurrency: paymentCurrency,callback:callback)
         }
     func closeModal(){

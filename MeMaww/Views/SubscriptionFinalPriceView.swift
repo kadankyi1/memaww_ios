@@ -97,7 +97,7 @@ struct SubscriptionFinalPriceView: View {
                                 let newtxnRef = Int(txnReference) ?? 0
                                 print("txnReference2-: " + String(newtxnRef))
                                 
-                                checkout.initCheckout(transId: Int(txnReference) ?? 0, amount: self.priceFinal, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                checkout.initCheckout(transId: self.txnReference, amount: self.priceFinal, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////

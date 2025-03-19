@@ -29,23 +29,28 @@ struct CurrentSubscriptionView: View {
                 }
                     VStack(alignment: .leading) {
                         Text(subscription_end_note)
-                            .lineLimit(2)
+                            .fixedSize(horizontal: true, vertical: false)
                             //.multilineTextAlignment(.left)
                             .font(.caption)
                         HStack(){
-                            Text("Items: " + pickupsDone)
-                                .font(.caption)
-                            Spacer()
                             Text("Pickups: " + pickupsDone)
+                                .fixedSize(horizontal: true, vertical: false)
                                 .font(.caption)
                             Spacer()
-                            Text("Items: " + itemsWashed)
+                            Text("Items Washed: " + itemsWashed)
+                                .fixedSize(horizontal: true, vertical: false)
                                 .font(.caption)
                         }
+                        .padding(.top, 1)
+                    Text("Pickup Time: " + pickupTime)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .font(.caption)
+                        .padding(.top, 1)
+                        .padding(.bottom, 10)
                     }
                 
             }
-        .frame(maxWidth: .infinity, maxHeight: 60)
+        .frame(maxWidth: .infinity, maxHeight: 65)
         .fixedSize(horizontal: false, vertical: false)
         .padding()
         }

@@ -57,11 +57,9 @@ struct InviteView: View {
                     
                     Spacer()
                     
-                    Image("gift")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(100)
-                        .shadow(color: Color(red: 0, green: 0, blue: 0), radius: 0.15, x: 6, y: 8)
+                        Image("gift")
+                           .padding(.leading, 20)
+                           .padding(.top, 5)
                     
                     Spacer()
                     
@@ -77,7 +75,7 @@ struct InviteView: View {
                     // FRUIT HEADLINE
                 
                     // BUTTON: START
-                    InviteButtonView(currentStage: $currentStage)
+                    InviteButtonView(currentStage: $currentStage, inviteCode: referral_code)
                         .padding(.vertical, 35)
                 }
             

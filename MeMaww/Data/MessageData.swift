@@ -10,14 +10,8 @@ import SwiftUI
 let messageData: [Message] = [
     Message(
         //id: "1",
-        text: "I've been coding applications from scratch in SwiftUI and it's so much fun!",
+        text: "Chat is currently not available. Reach us via phone call or email support@memaww.com",
         received: true,
         timestamp: "Apr 20"
-    ),
-    Message(
-        //id: "2",
-        text: "I've been coding applications from scratch in SwiftUI and it's so much fun!",
-        received: false,
-        timestamp: "Apr 21"
     ),
 ]
