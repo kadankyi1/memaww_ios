@@ -34,6 +34,7 @@ struct SubscriptionFinalPriceView: View {
     var subscriptionPackageDescription4: String
     var subscriptionCountryId: String
     @ObservedObject var model: MyModel = MyModel()
+    @State var showButton: Bool = true
     @State var viewStage: String = "1"
     @State var paymentResponse: String = ""
     var merchantTestApiKey: String
@@ -71,61 +72,68 @@ struct SubscriptionFinalPriceView: View {
                         
                         if updateSubscriptionOrderPayment.viewStage == "1"{
                             
-                                Text("By Subscribing, you agree to our fair use policy. Click here to read")
+                            
+                            Link("By subscribing, you agree to our service and fair use policies. Click here to read", destination: URL(string: "https://memaww.com/fair-usage-policy")!)
                                 .font(.caption)
-                            Button(action: {
-                                //updateSubscriptionOrderPayment.viewStage = "3"
-                                
-                                let checkout = TheTellerCheckout(
-                                    config: [
-                                        "merchantID": self.merchantId,
-                                        "API_Key_Prod" : self.merchantApiKey,
-                                        "API_Key_Test" : self.merchantTestApiKey,
-                                        "apiuser" : self.merchantApiUser,
-                                        "redirect_url" : self.returnUrl,
-                                        "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
-                                    ])
-                                
-                               //if (updateSubscriptionOrderPayment.useLocalID){
+                            
+                            if showButton {
+                                Button(action: {
+                                    showButton = false
+                                    //updateSubscriptionOrderPayment.viewStage = "3"
+                                    
+                                    let checkout = TheTellerCheckout(
+                                        config: [
+                                            "merchantID": self.merchantId,
+                                            "API_Key_Prod" : self.merchantApiKey,
+                                            "API_Key_Test" : self.merchantTestApiKey,
+                                            "apiuser" : self.merchantApiUser,
+                                            "redirect_url" : self.returnUrl,
+                                            "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
+                                        ])
+                                    
+                                    //if (updateSubscriptionOrderPayment.useLocalID){
                                     //print("txnReference LOCAL: " + self.txnReference)
                                     //txnReference2 = updateSubscriptionOrderPayment.newTransactionId
                                     //updateSubscriptionOrderPayment.generateNewTransactionID()
                                     //print("txnReference2 LOCAL: " + txnReference2)
-                                //}
-                                
-                                print("txnReference-: " + txnReference)
-                                let newtxnRef = Int(txnReference) ?? 0
-                                print("txnReference2-: " + String(newtxnRef))
-                                
-                                checkout.initCheckout(transId: self.txnReference, amount: self.priceFinal, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
-                                    ///////////////////////////////////////
-                                    ///////////////////////////////////////
-                                    ///////////////////////////////////////
-                                    ///////////////////////////////////////
-                                    print("PAYMENT RESULT START")
-                                    print(string ?? "Payment error occurred")
+                                    //}
                                     
-                                    let payment_status = string? ["status"] as! String
-                                    paymentStatus = payment_status
+                                    print("txnReference-: " + txnReference)
+                                    let newtxnRef = Int(txnReference) ?? 0
+                                    print("txnReference2-: " + String(newtxnRef))
+                                    
+                                    checkout.initCheckout(transId: self.txnReference, amount: self.priceFinal, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                        ///////////////////////////////////////
+                                        ///////////////////////////////////////
+                                        ///////////////////////////////////////
+                                        ///////////////////////////////////////
+                                        print("PAYMENT RESULT START")
+                                        print(string ?? "Payment error occurred")
                                         
-                                    print("PAYMENT STATUS: " + paymentStatus)
-                                    print("PAYMENT RESULT END")
-                                    updateSubscriptionOrderPayment.viewStage = "3"
-                                
+                                        let payment_status = string? ["status"] as! String
+                                        paymentStatus = payment_status
+                                        
+                                        print("PAYMENT STATUS: " + paymentStatus)
+                                        print("PAYMENT RESULT END")
+                                        updateSubscriptionOrderPayment.viewStage = "3"
+                                        
+                                        
+                                    }) // END OF initCheckout
                                     
-                                }) // END OF initCheckout
-                                
-                            }) {
-                                HStack (spacing: 8) {
-                                    Text("PAY ONLINE")
-                                        .foregroundColor(Color.white)
-                                }
-                                .foregroundColor(Color("ColorMeMawwBlueDark"))
-                            } //: BUTTON
-                            .foregroundColor(.white)
-                            .frame(width: 300, height: 50)
-                            .background(Color.green)
-                            .cornerRadius(10)
+                                }) {
+                                    HStack (spacing: 8) {
+                                        Text("PAY ONLINE")
+                                            .foregroundColor(Color.white)
+                                    }
+                                    .foregroundColor(Color("ColorMeMawwBlueDark"))
+                                } //: BUTTON
+                                .foregroundColor(.white)
+                                .frame(width: 300, height: 50)
+                                .background(Color.green)
+                                .cornerRadius(10)
+                            } else {
+                                ProgressView()
+                            }
                         }
                         
                         if updateSubscriptionOrderPayment.viewStage == "2"{ // SHOW PAYMENT SUCCESSFUL AND CLOSE PAGE

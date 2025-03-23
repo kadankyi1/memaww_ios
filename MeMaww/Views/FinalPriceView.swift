@@ -68,8 +68,8 @@ struct FinalPriceView: View {
                                         "redirect_url" : self.returnUrl,
                                         "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
                                     ])
-                                //self.priceFinalLong
-                                checkout.initCheckout(transId:self.txnReference, amount: "000000000010", desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                //"000000000010"
+                                checkout.initCheckout(transId:self.txnReference, amount: self.priceFinalLong, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////

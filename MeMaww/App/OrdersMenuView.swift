@@ -63,7 +63,7 @@ struct OrdersMenuView: View {
                 Button(action: {
                         //selectedIndex = 2
                 }, label: {
-                    OrdersMenuItemView(imageName: "callback", menuTitle: "Request Callback", menuDescription: sendCallBackRequestManager.message, showLoading: false)
+                    OrdersMenuItemView(imageName: "callback", menuTitle: "Callback", menuDescription: sendCallBackRequestManager.message, showLoading: false)
                     }
                 )
             } else if sendCallBackRequestManager.viewStage ==  2 {

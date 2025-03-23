@@ -120,6 +120,8 @@ struct SubscriptionView: View {
                                         .cornerRadius(10)
                                 }
                                 
+                                HStack {
+                                    Spacer()
                                     Button(action: {
                                         pickupTime = allotedPickupTimes[lastSelectedTimeIndex ?? 0]
                                         pickupDay = allotedPickupDays[lastSelectedDayIndex ?? 0]
@@ -147,6 +149,8 @@ struct SubscriptionView: View {
                                     .background(Color.blue)
                                     .cornerRadius(10)
                                     .padding(.bottom, 50)
+                                    Spacer()
+                                }
                                 
                             } // END FORM
                         }
@@ -161,6 +165,7 @@ struct SubscriptionView: View {
             
             
         } // END NAVIGATIONVIEW
+        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitleDisplayMode(.inline)
         
     }

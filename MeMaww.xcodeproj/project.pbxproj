@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AFF8D322D8F616E00691C26 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6AFF8D312D8F616E00691C26 /* FirebaseAnalytics */; };
+		6AFF8D342D8F616E00691C26 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6AFF8D332D8F616E00691C26 /* FirebaseMessaging */; };
 		DF48F45A2BCECCF900BE2891 /* MeMawwApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF48F4592BCECCF900BE2891 /* MeMawwApp.swift */; };
 		DF48F45C2BCECCF900BE2891 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF48F45B2BCECCF900BE2891 /* ContentView.swift */; };
 		DF48F45E2BCECD0000BE2891 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF48F45D2BCECD0000BE2891 /* Assets.xcassets */; };
@@ -61,8 +63,6 @@
 		DFDFA8162BD4E6E900C92D9A /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8152BD4E6E900C92D9A /* InviteView.swift */; };
 		DFDFA8182BD4EB3900C92D9A /* InviteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDFA8172BD4EB3900C92D9A /* InviteButtonView.swift */; };
 		DFE47A252D3A813500E63195 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFE47A242D3A813500E63195 /* GoogleService-Info.plist */; };
-		DFE47A2F2D3AAE0500E63195 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DFE47A2E2D3AAE0500E63195 /* FirebaseAnalytics */; };
-		DFE47A312D3AAE0500E63195 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DFE47A302D3AAE0500E63195 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,10 +174,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFE47A312D3AAE0500E63195 /* FirebaseMessaging in Frameworks */,
+				6AFF8D342D8F616E00691C26 /* FirebaseMessaging in Frameworks */,
 				DFB783E12BCFCE3000AB4252 /* SwiftyJSON in Frameworks */,
 				DFBB1DD92CF46E69002E606F /* TheTellerCheckout.framework in Frameworks */,
-				DFE47A2F2D3AAE0500E63195 /* FirebaseAnalytics in Frameworks */,
+				6AFF8D322D8F616E00691C26 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,8 +363,8 @@
 			name = MeMaww;
 			packageProductDependencies = (
 				DFB783E02BCFCE3000AB4252 /* SwiftyJSON */,
-				DFE47A2E2D3AAE0500E63195 /* FirebaseAnalytics */,
-				DFE47A302D3AAE0500E63195 /* FirebaseMessaging */,
+				6AFF8D312D8F616E00691C26 /* FirebaseAnalytics */,
+				6AFF8D332D8F616E00691C26 /* FirebaseMessaging */,
 			);
 			productName = MeMaww;
 			productReference = DF48F4562BCECCF900BE2891 /* MeMaww.app */;
@@ -396,9 +396,7 @@
 			mainGroup = DF48F44D2BCECCF900BE2891;
 			packageReferences = (
 				DFB783DF2BCFCE3000AB4252 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				DFE47A282D3AA7A600E63195 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				DFE47A2D2D3AAE0500E63195 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6AFF8D302D8F616E00691C26 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = DF48F4572BCECCF900BE2891 /* Products */;
 			projectDirPath = "";
@@ -649,7 +647,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeMaww/MeMaww.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MeMaww/Preview Content\"";
 				DEVELOPMENT_TEAM = R4M7KP6L7B;
 				ENABLE_PREVIEWS = YES;
@@ -660,9 +658,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -670,6 +666,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.memaww.memawwlaundry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -683,7 +683,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeMaww/MeMaww.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MeMaww/Preview Content\"";
 				DEVELOPMENT_TEAM = R4M7KP6L7B;
 				ENABLE_PREVIEWS = YES;
@@ -694,9 +694,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -704,6 +702,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.memaww.memawwlaundry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -734,6 +736,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6AFF8D302D8F616E00691C26 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 11.10.0;
+			};
+		};
 		DFB783DF2BCFCE3000AB4252 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -742,47 +752,23 @@
 				version = 5.0.2;
 			};
 		};
-		DFE47A282D3AA7A600E63195 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = exactVersion;
-				version = 9.6.0;
-			};
-		};
-		DFE47A2D2D3AAE0500E63195 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6AFF8D312D8F616E00691C26 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AFF8D302D8F616E00691C26 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6AFF8D332D8F616E00691C26 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AFF8D302D8F616E00691C26 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		DFB783E02BCFCE3000AB4252 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DFB783DF2BCFCE3000AB4252 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
-		};
-		DFE47A2E2D3AAE0500E63195 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		DFE47A302D3AAE0500E63195 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFEE1B5E2C03422C00F70361 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

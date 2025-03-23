@@ -141,6 +141,8 @@ struct StartOrderView: View {
                                     TextField("Discount Code", text: $discountCode)
                                 }
                                 
+                                HStack{
+                                    Spacer()
                                     Button(action: {
                                         pickupTime = allotedPickupTimes[lastSelectedTimeIndex ?? 0]
                                         print("collect_loc_raw: \(self.pickupLocation)")
@@ -169,10 +171,12 @@ struct StartOrderView: View {
                                         }
                                     } //: BUTTON
                                     .foregroundColor(.white)
-                                    .frame(width: 300, height: 50)
+                                    .frame(width: 300, height: 50, alignment: .center)
                                     .background(Color.blue)
                                     .cornerRadius(10)
                                     .padding(.bottom, 50)
+                                    Spacer()
+                                } // End Hstack
                                 
                             } // END FORM
                         }
@@ -187,6 +191,7 @@ struct StartOrderView: View {
             
             
         } // END NAVIGATIONVIEW
+        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitleDisplayMode(.inline)
         
     }
@@ -320,9 +325,9 @@ class getPriceHttp: ObservableObject {
                                                     self.returnUrl = return_url
                                                     print("return_url: \(self.returnUrl)")
                                                     
-                                                    if let price_final_no_currency_long = json["price_final_no_currency_long"].string {
+                                                    if let price_final_no_currency_long = json["price_final_ios"].string {
                                                         self.priceFinalLong = price_final_no_currency_long
-                                                        print("price_final_no_currency_long: \(self.priceFinalLong)")
+                                                        print("price_final_ios: \(self.priceFinalLong)")
                                                         
                                                         if let txn_narration = json["txn_narration"].string {
                                                             self.txnNarration = txn_narration
@@ -423,11 +428,13 @@ final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     var locationManager: CLLocationManager?
     
     func checkIfLocationServicesIsEnabled(){
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager()
-            locationManager!.delegate = self
-        } else {
-            print("Your location is off. Please turn it on")
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager = CLLocationManager()
+                self.locationManager!.delegate = self
+            } else {
+                print("Your location is off. Please turn it on")
+            }
         }
     }
     
@@ -457,7 +464,7 @@ final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
+            self.checkLocationAuthorization()
     }
             
 }

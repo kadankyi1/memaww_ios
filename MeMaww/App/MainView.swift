@@ -111,10 +111,7 @@ struct MainView: View {
                     
                     
                 default:
-                    NavigationView {
-                        Text("Remaining tabs")
-                        
-                    }
+                    OrdersMenuView(selectedIndex: Binding(projectedValue: $selectedIndex))
                 }
                 
             }

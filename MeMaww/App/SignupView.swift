@@ -245,7 +245,16 @@ class SignupHttpAuth: ObservableObject {
             print("starting 1")
             print(response)
             print(data2)
-            guard let data2 = data2 else { return }
+            guard let data2 = data2 else {
+                    print("Request failed 2")
+                    DispatchQueue.main.async {
+                        self.requestMade = true
+                        self.message = "Sign-In failed"
+                        self.authenticated = false
+                        self.showLoginButton = true
+                    }
+                return
+            }
             print("starting 2")
             //print(response)
             print(data2)
@@ -305,6 +314,7 @@ class SignupHttpAuth: ObservableObject {
                     }
                 }
             } catch  let error as NSError {
+                print("Request failed")
                 print((error as NSError).localizedDescription)
                 DispatchQueue.main.async {
                     self.requestMade = true

@@ -17,6 +17,7 @@ struct CurrentSubscriptionView: View {
     var body: some View {
         GroupBox(){
             VStack(alignment: .leading) {
+                Spacer()
                 HStack(spacing: 5) {
                     
                         Text("Subscription")
@@ -27,6 +28,7 @@ struct CurrentSubscriptionView: View {
                         .padding(10)
                         .cornerRadius(50)
                 }
+                
                     VStack(alignment: .leading) {
                         Text(subscription_end_note)
                             .fixedSize(horizontal: true, vertical: false)
@@ -48,9 +50,10 @@ struct CurrentSubscriptionView: View {
                         .padding(.top, 1)
                         .padding(.bottom, 10)
                     }
+                Spacer()
                 
             }
-        .frame(maxWidth: .infinity, maxHeight: 65)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .fixedSize(horizontal: false, vertical: false)
         .padding()
         }
