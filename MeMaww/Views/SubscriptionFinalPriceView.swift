@@ -11,7 +11,6 @@ import TheTellerCheckout
 
 struct SubscriptionFinalPriceView: View {
     // MARK: -- PROPERTIES
-    @Binding var currentStage: String
     @Binding var selectedIndex: Int
     var originalPrice: String
     var priceFinal: String
@@ -175,7 +174,7 @@ struct SubscriptionFinalPriceView: View {
                     Divider().padding(.vertical, 2)
                     // MARK: -- SECTION 1
                     GroupBox(){
-                        SettingsLogoutView(currentStage: .constant("MainView"),  icon: "We hope you benefit and enjoy this service at least half as much as we love providing the service to you.",  name: "")
+                        SettingsLogoutView(icon: "We hope you benefit and enjoy this service at least half as much as we love providing the service to you.",  name: "")
                     }
                 }
             } // SCROLLVIEW
@@ -186,7 +185,7 @@ struct SubscriptionFinalPriceView: View {
 
 struct SubscriptionFinalPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionFinalPriceView(currentStage: .constant("MainView"), selectedIndex: .constant(2), originalPrice: "10", priceFinal: "10", priceFinalLong: "0000010", txnReference: "Test Txn", merchantId: "merchantId", merchantApiUser: "merchantApiKey", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", userCurrency: "Ghc", subscriptionPersons: "1", subscriptionMonths: "1", subscriptionPickupTime: "7:00", subscriptionPickupLocation: "Madina", subscriptionPackageDescription1: "Unlimited Items", subscriptionPackageDescription2: "1 Pickup per week", subscriptionPackageDescription3: "Delivery in 48hrs", subscriptionPackageDescription4: "Wash & Fold/Iron", subscriptionCountryId: "81", merchantTestApiKey: "merchantTestApiKey")
+        SubscriptionFinalPriceView(selectedIndex: .constant(2), originalPrice: "10", priceFinal: "10", priceFinalLong: "0000010", txnReference: "Test Txn", merchantId: "merchantId", merchantApiUser: "merchantApiKey", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", userCurrency: "Ghc", subscriptionPersons: "1", subscriptionMonths: "1", subscriptionPickupTime: "7:00", subscriptionPickupLocation: "Madina", subscriptionPackageDescription1: "Unlimited Items", subscriptionPackageDescription2: "1 Pickup per week", subscriptionPackageDescription3: "Delivery in 48hrs", subscriptionPackageDescription4: "Wash & Fold/Iron", subscriptionCountryId: "81", merchantTestApiKey: "merchantTestApiKey")
     }
 }
 

@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingsLogoutView: View {
     // MARK: -- PROPERTIES
     
-    @Binding var currentStage: String
     var icon: String
     var name: String
     var content: String? = nil
@@ -50,7 +49,7 @@ struct SettingsLogoutView: View {
 // MARK: -- PREVIEW
 struct SettingsLogoutView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsLogoutView(currentStage: .constant("SignupView"), icon: "newwitness",name: "Prayer Requests")
+        SettingsLogoutView(icon: "newwitness",name: "Prayer Requests")
             .previewLayout(.fixed(width: 375, height: 60))
             .padding()
     }

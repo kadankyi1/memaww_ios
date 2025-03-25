@@ -11,7 +11,7 @@ import TheTellerCheckout
 
 struct FinalPriceView: View {
     // MARK: -- PROPERTIES
-    @Binding var currentStage: String
+    @State private var finalPriceViewMainView: String = "MainView"
     @Binding var selectedIndex: Int
     var payOnline: String
     var payOnPickup: String
@@ -114,7 +114,7 @@ struct FinalPriceView: View {
                             VStack {}
                                 .alert(isPresented: $model.isValid, content: {
                                 Alert(title: Text("Order"),
-                                      message: Text((paymentStatus == "approved") ? "Payment successful. We will be on our way to pickup your items" : "Payment failed. If you made the payment and this is an error, please contact us"),
+                                      message: Text((paymentStatus == "approved") ? "Order successful. We will be on our way to pickup your items" : "Payment failed. If you made the payment and this is an error, please contact us"),
                                       dismissButton: .default(
                                         Text("Okay"))
                                         {
@@ -160,7 +160,7 @@ struct FinalPriceView: View {
                     Divider().padding(.vertical, 2)
                     // MARK: -- SECTION 1
                     GroupBox(){
-                        SettingsLogoutView(currentStage: .constant("MainView"),  icon: "We hope you benefit and enjoy this service at least half as much as we love providing the service to you.",  name: "")
+                        SettingsLogoutView(icon: "We hope you benefit and enjoy this service at least half as much as we love providing the service to you.",  name: "")
                     }
                 }
             } // SCROLLVIEW
@@ -170,7 +170,7 @@ struct FinalPriceView: View {
 
 struct FinalPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        FinalPriceView(currentStage:  .constant("MainView"), selectedIndex: .constant(2), payOnline: "yes", payOnPickup:"yes", originalPrice: "$10", discountPercentage: "20%", discountAmount: "$2", priceFinal: "$8", priceFinalLong: "000000000010", txnReference: "Test Transaction", merchantId: "merchantId", merchantApiUser: "merchantApiUser", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", finalPriceIos: "000000000010", viewStage: "", paymentResponse: "", merchantTestApiKey: "merchantTestApiKey", paymentStatus: "")
+        FinalPriceView(selectedIndex: .constant(2), payOnline: "yes", payOnPickup:"yes", originalPrice: "$10", discountPercentage: "20%", discountAmount: "$2", priceFinal: "$8", priceFinalLong: "000000000010", txnReference: "Test Transaction", merchantId: "merchantId", merchantApiUser: "merchantApiUser", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", finalPriceIos: "000000000010", viewStage: "", paymentResponse: "", merchantTestApiKey: "merchantTestApiKey", paymentStatus: "")
     }
 }
 

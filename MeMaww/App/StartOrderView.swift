@@ -55,12 +55,12 @@ struct StartOrderView: View {
                     if !getPriceManager.requestOngoing {
                         if getPriceManager.requestStatusSuccessful {
                             NavigationLink(destination:
-                                            FinalPriceView(currentStage: .constant("MainView"), selectedIndex:  Binding(projectedValue: $selectedIndex), payOnline:  getPriceManager.payOnline, payOnPickup:  getPriceManager.payOnPickup, originalPrice:  getPriceManager.originalPrice, discountPercentage:  getPriceManager.discountPercentage, discountAmount:  getPriceManager.discountAmount, priceFinal:  getPriceManager.priceFinal,
+                                            FinalPriceView(selectedIndex:  Binding(projectedValue: $selectedIndex), payOnline:  getPriceManager.payOnline, payOnPickup:  getPriceManager.payOnPickup, originalPrice:  getPriceManager.originalPrice, discountPercentage:  getPriceManager.discountPercentage, discountAmount:  getPriceManager.discountAmount, priceFinal:  getPriceManager.priceFinal,
                                                            priceFinalLong: getPriceManager.priceFinalLong, txnReference: getPriceManager.txnReference, merchantId: getPriceManager.merchantId, merchantApiUser: getPriceManager.merchantApiUser, merchantApiKey: getPriceManager.merchantApiKey, returnUrl: getPriceManager.returnUrl, txnNarration: getPriceManager.txnNarration, userEmail: getPriceManager.userEmail, finalPriceIos: getPriceManager.priceFinalIOS, viewStage: "1", paymentResponse: "", merchantTestApiKey: getPriceManager.merchantTestApiKey, paymentStatus: ""), isActive: $getPriceManager.requestStatusSuccessful){ }
                         } else {
                             Form {
                                 Section(header: Text("How We Wash")){
-                                    ProfileListItemSmallerText(currentStage: .constant("MainView"),  icon: "We offer Machine Wash but if an item requires special care, we will reach out to inform and bill you.",  name: "")
+                                    ProfileListItemSmallerText(icon: "We offer Machine Wash but if an item requires special care, we will reach out to inform and bill you.",  name: "")
                                 }
                                 
                                 Section(header: Text("Collection & DropOff")){

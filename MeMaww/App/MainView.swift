@@ -11,12 +11,6 @@ import SwiftyJSON
 struct MainView: View {
     @Binding var currentStage: String
     
-    init(currentStage: Binding<String>) {
-        self._currentStage = .constant("MainView")
-        UITabBar.appearance().barTintColor = .systemBackground
-        UINavigationBar.appearance().barTintColor = .systemBackground
-    }
-    
     //var access_token: String = getSavedString("user_accesstoken");
     @State var selectedIndex = 2
     @State var shouldShowModal = false
@@ -89,7 +83,7 @@ struct MainView: View {
                     
                 case 1:
                     //OrdersView()
-                    InviteView(currentStage: .constant("MainView"), referral_code: getSavedString("user_referralcode"))
+                    InviteView(currentStage: $currentStage, referral_code: getSavedString("user_referralcode"))
                     
                 case 2:
                     OrdersMenuView(selectedIndex: Binding(projectedValue: $selectedIndex))
@@ -98,7 +92,7 @@ struct MainView: View {
                     ContactUsView()
                     
                 case 4:
-                    ProfileView(currentStage: .constant("MainView"), user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"),  user_phone: getSavedString("user_phone"), user_address: "Not Set", user_email:  "Not Set")
+                    ProfileView(currentStage: $currentStage, user_name: getSavedString("user_firstname") + " " + getSavedString("user_lastname"),  user_phone: getSavedString("user_phone"), user_address: "Not Set", user_email:  "Not Set")
                     
                 case 5:
                     StartOrderView(selectedIndex: Binding(projectedValue: $selectedIndex))

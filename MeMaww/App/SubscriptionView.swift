@@ -11,6 +11,7 @@ import SwiftyJSON
 
 struct SubscriptionView: View {
     @StateObject private var viewModel = ContentViewModel()
+    
     @State var stepper: Int = 0
     
     @State private var numOfPeople = 1
@@ -43,7 +44,7 @@ struct SubscriptionView: View {
                 VStack(spacing: 0) {
                     if !getPriceManager.requestOngoing {
                         if getPriceManager.requestStatusSuccessful {
-                            NavigationLink(destination: SubscriptionFinalPriceView(currentStage: .constant("MainView"), selectedIndex:  Binding(projectedValue: $selectedIndex), originalPrice: getPriceManager.subscription_price, priceFinal:  getPriceManager.subscription_price_ios, priceFinalLong:  getPriceManager.subscription_price, txnReference:  getPriceManager.txn_reference, merchantId: getPriceManager.merchant_id, merchantApiUser: getPriceManager.merchant_api_user, merchantApiKey: getPriceManager.merchant_api_key, returnUrl: getPriceManager.return_url, txnNarration: getPriceManager.txn_narration, userEmail: getPriceManager.user_email, userCurrency: getPriceManager.currency_symbol, subscriptionPersons: String(self.numOfPeople), subscriptionMonths: String(self.numOfMonths), subscriptionPickupTime: self.pickupTime, subscriptionPickupLocation: self.pickupLocation, subscriptionPackageDescription1: getPriceManager.packageinfo1, subscriptionPackageDescription2: getPriceManager.packageinfo2, subscriptionPackageDescription3: getPriceManager.packageinfo3, subscriptionPackageDescription4: getPriceManager.packageinfo4, subscriptionCountryId: getPriceManager.subscription_country_id, merchantTestApiKey: getPriceManager.merchant_test_api_key), isActive: $getPriceManager.requestStatusSuccessful){ }
+                            NavigationLink(destination: SubscriptionFinalPriceView(selectedIndex:  Binding(projectedValue: $selectedIndex), originalPrice: getPriceManager.subscription_price, priceFinal:  getPriceManager.subscription_price_ios, priceFinalLong:  getPriceManager.subscription_price, txnReference:  getPriceManager.txn_reference, merchantId: getPriceManager.merchant_id, merchantApiUser: getPriceManager.merchant_api_user, merchantApiKey: getPriceManager.merchant_api_key, returnUrl: getPriceManager.return_url, txnNarration: getPriceManager.txn_narration, userEmail: getPriceManager.user_email, userCurrency: getPriceManager.currency_symbol, subscriptionPersons: String(self.numOfPeople), subscriptionMonths: String(self.numOfMonths), subscriptionPickupTime: self.pickupTime, subscriptionPickupLocation: self.pickupLocation, subscriptionPackageDescription1: getPriceManager.packageinfo1, subscriptionPackageDescription2: getPriceManager.packageinfo2, subscriptionPackageDescription3: getPriceManager.packageinfo3, subscriptionPackageDescription4: getPriceManager.packageinfo4, subscriptionCountryId: getPriceManager.subscription_country_id, merchantTestApiKey: getPriceManager.merchant_test_api_key), isActive: $getPriceManager.requestStatusSuccessful){ }
                         } else {
                             Form {
                                 Section(header: Text("People & Duration")){

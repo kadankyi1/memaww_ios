@@ -33,7 +33,7 @@ struct OrdersView: View {
                     VStack {}
                         .alert(isPresented: $model.isValid, content: {
                         Alert(title: Text("Oops"),
-                              message: Text("Something went awry"),
+                              message: Text("No orders found"),
                               dismissButton: .default(
                                 Text("Okay"))
                                 {

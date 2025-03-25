@@ -33,7 +33,7 @@ struct NotificationsView: View {
                     VStack {}
                         .alert(isPresented: $model.isValid, content: {
                         Alert(title: Text("Oops"),
-                              message: Text("Something went awry"),
+                              message: Text("No notifications found"),
                               dismissButton: .default(
                                 Text("Okay"))
                                 {

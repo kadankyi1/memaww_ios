@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileListItemSmallerText: View {
     // MARK: -- PROPERTIES
     
-    @Binding var currentStage: String
     var icon: String
     var name: String
     var content: String? = nil
@@ -53,7 +52,7 @@ struct ProfileListItemSmallerText: View {
 // MARK: -- PREVIEW
 struct ProfileListItemSmallerText_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileListItemSmallerText(currentStage: .constant("SignupView"), icon: "newwitness",name: "Prayer Requests")
+        ProfileListItemSmallerText(icon: "newwitness",name: "Prayer Requests")
             .previewLayout(.fixed(width: 375, height: 60))
             .padding()
     }
