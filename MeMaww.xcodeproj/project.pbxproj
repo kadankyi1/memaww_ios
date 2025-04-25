@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1E6E2F2DBAAA1C003E58A1 /* RemainingItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E6E2E2DBAAA1C003E58A1 /* RemainingItemsView.swift */; };
+		6A1E6E312DBAAC94003E58A1 /* RemainingItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E6E302DBAAC94003E58A1 /* RemainingItemsModel.swift */; };
+		6A1E6E332DBAAF31003E58A1 /* RemaningItemsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E6E322DBAAF31003E58A1 /* RemaningItemsListItemView.swift */; };
+		6A1E6E352DBAAFB3003E58A1 /* RemainingItemsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E6E342DBAAFB3003E58A1 /* RemainingItemsData.swift */; };
 		6AFF8D322D8F616E00691C26 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6AFF8D312D8F616E00691C26 /* FirebaseAnalytics */; };
 		6AFF8D342D8F616E00691C26 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6AFF8D332D8F616E00691C26 /* FirebaseMessaging */; };
 		DF48F45A2BCECCF900BE2891 /* MeMawwApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF48F4592BCECCF900BE2891 /* MeMawwApp.swift */; };
@@ -111,6 +115,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6A1E6E2E2DBAAA1C003E58A1 /* RemainingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingItemsView.swift; sourceTree = "<group>"; };
+		6A1E6E302DBAAC94003E58A1 /* RemainingItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingItemsModel.swift; sourceTree = "<group>"; };
+		6A1E6E322DBAAF31003E58A1 /* RemaningItemsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemaningItemsListItemView.swift; sourceTree = "<group>"; };
+		6A1E6E342DBAAFB3003E58A1 /* RemainingItemsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingItemsData.swift; sourceTree = "<group>"; };
 		DF48F4562BCECCF900BE2891 /* MeMaww.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeMaww.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF48F4592BCECCF900BE2891 /* MeMawwApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMawwApp.swift; sourceTree = "<group>"; };
 		DF48F45B2BCECCF900BE2891 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 				DFA023302CF757C4003456A6 /* OrdersMenuView.swift */,
 				DFA023362CF87C1C003456A6 /* SubscriptionView.swift */,
 				DFA0233E2CFF05FD003456A6 /* NotificationsView.swift */,
+				6A1E6E2E2DBAAA1C003E58A1 /* RemainingItemsView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -271,6 +280,7 @@
 				DFA0233C2CFB2752003456A6 /* CurrentSubscriptionView.swift */,
 				DFA023422CFF0B3F003456A6 /* NotificationsListItemView.swift */,
 				DF749B762D33F0B60010B238 /* ProfileListItemSmallerText.swift */,
+				6A1E6E322DBAAF31003E58A1 /* RemaningItemsListItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +292,7 @@
 				DFDFA8112BD3FB8200C92D9A /* OrderData.swift */,
 				DF9F9F842BD6897300111DFD /* MessageData.swift */,
 				DFA023442CFF0C9E003456A6 /* NotificationData.swift */,
+				6A1E6E342DBAAFB3003E58A1 /* RemainingItemsData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -293,6 +304,7 @@
 				DFDFA80F2BD3F81300C92D9A /* OrderModel.swift */,
 				DF9F9F752BD66BC200111DFD /* Message.swift */,
 				DFA023402CFF075F003456A6 /* NotificationModel.swift */,
+				6A1E6E302DBAAC94003E58A1 /* RemainingItemsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -477,6 +489,7 @@
 				DF9F9F872BD9200300111DFD /* FinalPriceView.swift in Sources */,
 				DFDFA80E2BD296F400C92D9A /* SettingsLogoutView.swift in Sources */,
 				DFB783D12BCFC62B00AB4252 /* SliderModel.swift in Sources */,
+				6A1E6E352DBAAFB3003E58A1 /* RemainingItemsData.swift in Sources */,
 				DF9F9F7A2BD66DF400111DFD /* Extensions.swift in Sources */,
 				DFB783F02BCFD33000AB4252 /* OrdersView.swift in Sources */,
 				DF48F45C2BCECCF900BE2891 /* ContentView.swift in Sources */,
@@ -493,12 +506,14 @@
 				DFDFA8082BD2889500C92D9A /* ContactUsView.swift in Sources */,
 				DFDFA8162BD4E6E900C92D9A /* InviteView.swift in Sources */,
 				DFDFA80C2BD2960E00C92D9A /* SettingsRowView.swift in Sources */,
+				6A1E6E2F2DBAAA1C003E58A1 /* RemainingItemsView.swift in Sources */,
 				DF9F9F812BD67DAF00111DFD /* StartOrderView.swift in Sources */,
 				DFB783F42BCFF87600AB4252 /* SignupActionTextsViews.swift in Sources */,
 				DF9F9F852BD6897300111DFD /* MessageData.swift in Sources */,
 				DFDFA8122BD3FB8200C92D9A /* OrderData.swift in Sources */,
 				DFB783E82BCFCEE400AB4252 /* GeometryGetter.swift in Sources */,
 				DFA0233F2CFF05FD003456A6 /* NotificationsView.swift in Sources */,
+				6A1E6E332DBAAF31003E58A1 /* RemaningItemsListItemView.swift in Sources */,
 				DFA023312CF757C4003456A6 /* OrdersMenuView.swift in Sources */,
 				DF9F9F7D2BD66EC100111DFD /* MessageField.swift in Sources */,
 				DF48F45A2BCECCF900BE2891 /* MeMawwApp.swift in Sources */,
@@ -508,6 +523,7 @@
 				DFDFA80A2BD295AE00C92D9A /* ProfileView.swift in Sources */,
 				DF9F9F892BD9235D00111DFD /* FinalPriceListItemView.swift in Sources */,
 				DFA0233D2CFB2752003456A6 /* CurrentSubscriptionView.swift in Sources */,
+				6A1E6E312DBAAC94003E58A1 /* RemainingItemsModel.swift in Sources */,
 				DFA023352CF84B19003456A6 /* OrdersMenuItemView.swift in Sources */,
 				DFB783CE2BCFC58D00AB4252 /* SliderCardView.swift in Sources */,
 				DFDFA8102BD3F81300C92D9A /* OrderModel.swift in Sources */,
@@ -647,7 +663,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeMaww/MeMaww.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MeMaww/Preview Content\"";
 				DEVELOPMENT_TEAM = R4M7KP6L7B;
 				ENABLE_PREVIEWS = YES;
@@ -683,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeMaww/MeMaww.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MeMaww/Preview Content\"";
 				DEVELOPMENT_TEAM = R4M7KP6L7B;
 				ENABLE_PREVIEWS = YES;

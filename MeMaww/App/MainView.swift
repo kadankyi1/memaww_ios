@@ -26,11 +26,9 @@ struct MainView: View {
             HStack(){
                 
                     Button(action: {
-                        if let url = URL(string: "https://www.memaww.com/service-policy") {
-                           UIApplication.shared.open(url)
-                        }
+                        selectedIndex = 8
                     }, label: {
-                        Image("ohg")
+                        Image("handtruck")
                            //.font(.system(size: 25, weight: .bold))
                            .renderingMode(.template)
                            .colorMultiply(.init(white: 0.8))
@@ -102,6 +100,10 @@ struct MainView: View {
                     
                 case 7:
                     NotificationsView(selectedIndex: Binding(projectedValue: $selectedIndex))
+                    
+                    
+                case 8:
+                    RemainingItemsView(selectedIndex: Binding(projectedValue: $selectedIndex))
                     
                     
                 default:
