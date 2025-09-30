@@ -23,6 +23,9 @@ struct StartOrderView: View {
     @State private var lastSelectedTimeIndex: Int?
     @State var allotedPickupTimes = ["7:00","12:00","16:00"] //Here Add Your data
     
+    @State private var featherWeightWashAndFold = 0
+    @State private var featherWeightWashAndIron = 0
+    @State private var featherWeightJustIron = 0
     
     @State private var lightWeightWashAndFold = 0
     @State private var lightWeightWashAndIron = 0
@@ -34,6 +37,7 @@ struct StartOrderView: View {
     
     @State private var bulkyItemsWashAndFold = 0
     @State private var bulkyItemsWashAndIron = 0
+    @State private var bulkyItemsJustIron = 0
     
     @State var shouldShowModal = false
     
@@ -98,29 +102,44 @@ struct StartOrderView: View {
                                         .background(Color.black.opacity(0.05))
                                         .cornerRadius(10)
                                 }
+                                
+                                
+                                Section(header: Text("Featherweight Items")){
+                                    Text("Handkerchiefs | Underwear | Napkins | Etc")
+                                        .font(.footnote)
+                                        .foregroundColor(Color.black)
+                                    Stepper("Wash & Fold: \(featherWeightWashAndFold) items", value: $featherWeightWashAndFold, in: 0...100)
+                                    Stepper("Wash & Iron: \(featherWeightWashAndIron) items", value: $featherWeightWashAndIron, in: 0...100)
+                                    Stepper("Just Iron: \(featherWeightJustIron) items", value: $featherWeightJustIron, in: 0...100)
+                                }
+                                
                                 Section(header: Text("Lightweight Items")){
-                                    Text("Napkins | Underwear | Anything Under 0.1kg")
+                                    Text("Shirts | Trousers | Singlets | Etc")
                                         .font(.footnote)
                                         .foregroundColor(Color.black)
                                     Stepper("Wash & Fold: \(lightWeightWashAndFold) items", value: $lightWeightWashAndFold, in: 0...100)
                                     Stepper("Wash & Iron: \(lightWeightWashAndIron) items", value: $lightWeightWashAndIron, in: 0...100)
-                                    Stepper("Just & Iron: \(lightWeightJustIron) items", value: $lightWeightJustIron, in: 0...100)
+                                    Stepper("Just Iron: \(lightWeightJustIron) items", value: $lightWeightJustIron, in: 0...100)
                                 }
-                                Section(header: Text("Mediumweight Items")){
-                                    Text("Shirts | Trousers | Anything Between 0.1kg - 0.7kg")
+                                
+                                Section(header: Text("Middleweight Items")){
+                                    Text("Bedsheets | Cloths | Suits | Etc")
                                         .font(.footnote)
                                         .foregroundColor(Color.black)
                                     Stepper("Wash & Fold: \(mediumWeightWashAndFold) items", value: $mediumWeightWashAndFold, in: 0...100)
                                     Stepper("Wash & Iron: \(mediumWeightWashAndIron) items", value: $mediumWeightWashAndIron, in: 0...100)
-                                    Stepper("Just & Iron: \(mediumWeightJustIron) items", value: $mediumWeightJustIron, in: 0...100)
+                                    Stepper("Just Iron: \(mediumWeightJustIron) items", value: $mediumWeightJustIron, in: 0...100)
                                 }
-                                Section(header: Text("Bulky Items")){
-                                    Text("Duvets | Bedsheets | Anything Above 0.8kg")
+                                
+                                Section(header: Text("Heavyweight Items")){
+                                    Text("Duvets | Blankets | Curtains | Etc")
                                         .font(.footnote)
                                         .foregroundColor(Color.black)
                                     Stepper("Wash & Fold: \(bulkyItemsWashAndFold) items", value: $bulkyItemsWashAndFold, in: 0...100)
                                     Stepper("Wash & Iron: \(bulkyItemsWashAndIron) items", value: $bulkyItemsWashAndIron, in: 0...100)
+                                    Stepper("Just Iron: \(bulkyItemsJustIron) items", value: $bulkyItemsJustIron, in: 0...100)
                                 }
+                                
                                 Section(header: Text("Anything Else?")){
                                     
                                     TextEditor(text: $specialInstructions)
@@ -163,7 +182,7 @@ struct StartOrderView: View {
                                         print("special_instructions: \(self.specialInstructions)")
                                         print("discount_code: \(self.discountCode)")
                                         
-                                        getPriceManager.getPrice(collect_loc_raw: self.pickupLocation, collect_loc_gps: self.pickupLocationGPS, collect_datetime: self.pickupTime, contact_person_phone: self.contactPhoneNumber, drop_loc_raw: "", drop_loc_gps: "", drop_datetime: "", smallitems_justwash_quantity: String(self.lightWeightWashAndFold), smallitems_washandiron_quantity: String(self.lightWeightWashAndIron), smallitems_justiron_quantity: String(self.lightWeightJustIron), mediumitems_justwash_quantity: String(self.mediumWeightWashAndFold), mediumitems_washandiron_quantity: String(self.mediumWeightWashAndIron), mediumitems_justiron_quantity: String(self.mediumWeightJustIron), bigitems_justwash_quantity: String(self.bulkyItemsWashAndFold), bigitems_washandiron_quantity: String(self.bulkyItemsWashAndIron), special_instructions: self.specialInstructions, discount_code: self.discountCode)
+                                        getPriceManager.getPrice(collect_loc_raw: self.pickupLocation, collect_loc_gps: self.pickupLocationGPS, collect_datetime: self.pickupTime, contact_person_phone: self.contactPhoneNumber, drop_loc_raw: "", drop_loc_gps: "", drop_datetime: "", featherweightitems_justwash_quantity: String(self.featherWeightWashAndFold), featherweightitems_washandiron_quantity: String(self.featherWeightWashAndIron), featherweightitems_justiron_quantity: String(self.featherWeightJustIron), smallitems_justwash_quantity: String(self.lightWeightWashAndFold), smallitems_washandiron_quantity: String(self.lightWeightWashAndIron), smallitems_justiron_quantity: String(self.lightWeightJustIron), mediumitems_justwash_quantity: String(self.mediumWeightWashAndFold), mediumitems_washandiron_quantity: String(self.mediumWeightWashAndIron), mediumitems_justiron_quantity: String(self.mediumWeightJustIron), bigitems_justwash_quantity: String(self.bulkyItemsWashAndFold), bigitems_washandiron_quantity: String(self.bulkyItemsWashAndIron), bigitems_justiron_quantity: String(self.bulkyItemsJustIron), special_instructions: self.specialInstructions, discount_code: self.discountCode)
                                     }) {
                                         HStack (spacing: 8) {
                                             Text("GET PRICE")
@@ -225,7 +244,7 @@ class getPriceHttp: ObservableObject {
     @Published var merchantTestApiKey = ""
     
     
-    func getPrice(collect_loc_raw: String, collect_loc_gps: String, collect_datetime: String, contact_person_phone: String, drop_loc_raw: String, drop_loc_gps: String, drop_datetime: String, smallitems_justwash_quantity: String, smallitems_washandiron_quantity: String, smallitems_justiron_quantity: String,mediumitems_justwash_quantity: String, mediumitems_washandiron_quantity: String, mediumitems_justiron_quantity: String, bigitems_justwash_quantity: String, bigitems_washandiron_quantity: String, special_instructions: String, discount_code: String) {
+    func getPrice(collect_loc_raw: String, collect_loc_gps: String, collect_datetime: String, contact_person_phone: String, drop_loc_raw: String, drop_loc_gps: String, drop_datetime: String, featherweightitems_justwash_quantity: String, featherweightitems_washandiron_quantity: String, featherweightitems_justiron_quantity: String,  smallitems_justwash_quantity: String, smallitems_washandiron_quantity: String, smallitems_justiron_quantity: String,mediumitems_justwash_quantity: String, mediumitems_washandiron_quantity: String, mediumitems_justiron_quantity: String, bigitems_justwash_quantity: String, bigitems_washandiron_quantity: String, bigitems_justiron_quantity: String, special_instructions: String, discount_code: String) {
         
         self.requestOngoing = true
         guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/request-collection")
@@ -244,16 +263,23 @@ class getPriceHttp: ObservableObject {
             "drop_loc_raw" : drop_loc_raw,
             "drop_loc_gps" : drop_loc_gps,
             "drop_datetime" : drop_datetime,
-            "smallitems_justwash_quantity" : smallitems_justwash_quantity,
-            "smallitems_washandiron_quantity" : smallitems_washandiron_quantity,
-            "smallitems_justiron_quantity" : smallitems_justiron_quantity,
             
-            "mediumitems_justwash_quantity" : mediumitems_justwash_quantity,
-            "mediumitems_washandiron_quantity" : mediumitems_washandiron_quantity,
-            "mediumitems_justiron_quantity" : mediumitems_justiron_quantity,
+            "featherweightitems_justwash_quantity" : featherweightitems_justwash_quantity,
+            "featherweightitems_washandiron_quantity" : featherweightitems_washandiron_quantity,
+            "featherweightitems_justiron_quantity" : featherweightitems_justiron_quantity,
             
-            "bigitems_justwash_quantity" : bigitems_justwash_quantity,
-            "bigitems_washandiron_quantity" : bigitems_washandiron_quantity,
+            "lightweightitems_justwash_quantity" : smallitems_justwash_quantity,
+            "lightweightitems_washandiron_quantity" : smallitems_washandiron_quantity,
+            "lightweightitems_justiron_quantity" : smallitems_justiron_quantity,
+            
+            "middleweightitems_justwash_quantity" : mediumitems_justwash_quantity,
+            "middleweighitems_washandiron_quantity" : mediumitems_washandiron_quantity,
+            "middleweighitems_justiron_quantity" : mediumitems_justiron_quantity,
+            
+            "heavyweightitems_justwash_quantity" : bigitems_justwash_quantity,
+            "heavyweightitems_washandiron_quantity" : bigitems_washandiron_quantity,
+            "heavyweightitems_justiron_quantity" : bigitems_justiron_quantity,
+            
             "special_instructions" : special_instructions,
             "discount_code" : discount_code,
             "app_type": "IOS",

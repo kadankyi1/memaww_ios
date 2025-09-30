@@ -101,7 +101,7 @@ struct MeMawwApp: App {
     static let app_version : String = "1"
     
     // LIVE OR TEST ENVIRONMENT
-    //static let app_domain : String = "http://127.0.0.1"
+    //static let app_domain : String = "http://127.0.0.1/infodefa_00233538815095/memaww_web/public"
     static let app_domain : String = "https://memaww.com"
     
     @State var currentStage = getUserFirstOpenView("user_accesstoken")
@@ -122,6 +122,10 @@ struct MeMawwApp: App {
         }
       }
     }
+
+
+
+
 
     func getSavedString(_ index: String) -> String {
         var str = UserDefaults.standard.string(forKey: index) ?? ""

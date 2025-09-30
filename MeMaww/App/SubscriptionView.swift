@@ -23,6 +23,7 @@ struct SubscriptionView: View {
     @State private var pickupLocationFinal = ""
     @State private var pickupDay = ""
     @State private var pickupTime = ""
+    @State private var serviceType = ""
     
     @State var shouldShowModal = false
     
@@ -38,76 +39,46 @@ struct SubscriptionView: View {
     @State private var lastSelectedDayIndex: Int?
     @State var allotedPickupDays = ["Saturday","Sunday","Monday", "Tuesday", "Wednesday", "Thursady", "Friday"] //Here Add Your data
     
+    @State private var lastSelectedServiceIndex: Int?
+    @State var allotedServiceTypes = ["Wash And Fold","Wash And Iron","Just Iron"] //Here Add Your data
+    
     var body: some View {
         
         NavigationView {
                 VStack(spacing: 0) {
                     if !getPriceManager.requestOngoing {
                         if getPriceManager.requestStatusSuccessful {
-                            NavigationLink(destination: SubscriptionFinalPriceView(selectedIndex:  Binding(projectedValue: $selectedIndex), originalPrice: getPriceManager.subscription_price, priceFinal:  getPriceManager.subscription_price_ios, priceFinalLong:  getPriceManager.subscription_price, txnReference:  getPriceManager.txn_reference, merchantId: getPriceManager.merchant_id, merchantApiUser: getPriceManager.merchant_api_user, merchantApiKey: getPriceManager.merchant_api_key, returnUrl: getPriceManager.return_url, txnNarration: getPriceManager.txn_narration, userEmail: getPriceManager.user_email, userCurrency: getPriceManager.currency_symbol, subscriptionPersons: String(self.numOfPeople), subscriptionMonths: String(self.numOfMonths), subscriptionPickupTime: self.pickupTime, subscriptionPickupLocation: self.pickupLocation, subscriptionPackageDescription1: getPriceManager.packageinfo1, subscriptionPackageDescription2: getPriceManager.packageinfo2, subscriptionPackageDescription3: getPriceManager.packageinfo3, subscriptionPackageDescription4: getPriceManager.packageinfo4, subscriptionCountryId: getPriceManager.subscription_country_id, merchantTestApiKey: getPriceManager.merchant_test_api_key), isActive: $getPriceManager.requestStatusSuccessful){ }
+                            NavigationLink(destination: SubscriptionFinalPriceView(selectedIndex:  Binding(projectedValue: $selectedIndex), originalPrice: getPriceManager.subscription_price, priceFinal:  getPriceManager.subscription_price_ios, priceFinalLong:  getPriceManager.subscription_price, txnReference:  getPriceManager.txn_reference, merchantId: getPriceManager.merchant_id, merchantApiUser: getPriceManager.merchant_api_user, merchantApiKey: getPriceManager.merchant_api_key, returnUrl: getPriceManager.return_url, txnNarration: getPriceManager.txn_narration, userEmail: getPriceManager.user_email, userCurrency: getPriceManager.currency_symbol, subscriptionPersons: String(self.numOfPeople), subscriptionMonths: String(self.numOfMonths), subscriptionPickupTime: self.pickupTime, subscriptionPickupLocation: self.pickupLocation, subscriptionPackageDescription1: getPriceManager.packageinfo1, subscriptionPackageDescription2: getPriceManager.packageinfo2, subscriptionPackageDescription3: getPriceManager.packageinfo3, subscriptionPackageDescription4: getPriceManager.packageinfo4, subscriptionCountryId: getPriceManager.subscription_country_id, merchantTestApiKey: getPriceManager.merchant_test_api_key, subscriptionServiceType: serviceType), isActive: $getPriceManager.requestStatusSuccessful){ }
                         } else {
                             Form {
-                                Section(header: Text("People & Duration")){
-                                    Stepper("Number of People: \(numOfPeople) ", value: $numOfPeople, in: 1...10)
-                                    Stepper("Number of Months: \(numOfMonths) ", value: $numOfMonths, in: 1...12)
-                                }
-                                Section(header: Text("Pickup")){
+                                Section(header: Text("Pickup & Drop-Off")){
                                     
-                                        HStack(){
-                                            TextField("Pickup Location", text: $pickupLocation)
-                                                .disabled(pickupLocationFieldToggle)
-                                                .onAppear {
-                                                    viewModel.checkIfLocationServicesIsEnabled()
-                                                    print("Checked for permission")
-                                                }
-                                            Spacer()
-                                            Button(action: {
-                                                    print("viewModel.region 3")
-                                                    print(viewModel.region)
-                                                    print(viewModel.region.center.latitude)
-                                                    print(viewModel.region.center.longitude)
-                                                    pickupLocationGPS = String(viewModel.region.center.latitude) + "," + String(viewModel.region.center.longitude)
-                                                    pickupLocation = "Current Location"
-                                                    pickupLocationFieldToggle = true
-                                                    print("viewModel.region 4")
-                                                }, label: {
-                                                    Image("map")
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .frame(width: 35, height: 35)
-                                                        //.padding(20)
-                                                }
-                                            )
-                                        }
-                                    
-                                    /*HStack(){
+                                    HStack(){
                                         TextField("Pickup Location", text: $pickupLocation)
-                                        Button(action: {
-                                            locationManager.checkLocationAuthorization()
-                                            if let coordinate = locationManager.lastKnownLocation {
-                                                self.pickupCoordinates = "Current Location";
-                                                
-                                                    print("coordinate.latitude: \(coordinate.latitude)")
-                                                    print("coordinate.longitude: \(coordinate.longitude)")
-                                                            //Text("Latitude: \(coordinate.latitude)")
-                                                           // Text("Longitude: \(coordinate.longitude)")
-                                                } else {
-                                                    Text("Unknown Location")
-                                                }
-                                        }, label: {
-                                            Image("ohg")
-                                               //.font(.system(size: 25, weight: .bold))
-                                               .renderingMode(.template)
-                                               .colorMultiply(.init(white: 0.8))
-                                               //.foregroundColor(.red)
-                                               .foregroundColor(.init(white: 0.8))
-                                               .padding(.leading, 20)
-                                               .padding(.top, 5)
+                                            .disabled(pickupLocationFieldToggle)
+                                            .onAppear {
+                                                viewModel.checkIfLocationServicesIsEnabled()
+                                                print("Checked for permission")
                                             }
+                                        Spacer()
+                                        Button(action: {
+                                            print("viewModel.region 3")
+                                            print(viewModel.region)
+                                            print(viewModel.region.center.latitude)
+                                            print(viewModel.region.center.longitude)
+                                            pickupLocationGPS = String(viewModel.region.center.latitude) + "," + String(viewModel.region.center.longitude)
+                                            pickupLocation = "Current Location"
+                                            pickupLocationFieldToggle = true
+                                            print("viewModel.region 4")
+                                        }, label: {
+                                            Image("map")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 35, height: 35)
+                                            //.padding(20)
+                                        }
                                         )
-                                    
-                                    }*/
-                                    
+                                    }
                                     PickerTextField(data: ["Saturday","Sunday","Monday", "Tuesday", "Wednesday", "Thursady", "Friday"],placeholder: "Saturday",lastSelectedIndex: self.$lastSelectedDayIndex)
                                         .padding()
                                         .frame(width: 300, height: 50)
@@ -120,12 +91,27 @@ struct SubscriptionView: View {
                                         .background(Color.black.opacity(0.05))
                                         .cornerRadius(10)
                                 }
+                            
+                                Section(header: Text("Members")){
+                                    Stepper("Members On Subscription: \(numOfPeople) ", value: $numOfPeople, in: 1...10)
+                                }
+                                
+                                Section(header: Text("Service & Duration")){
+                                    Stepper("Number of Months: \(numOfMonths) ", value: $numOfMonths, in: 1...12)
+                                    
+                                    PickerTextField(data: ["Wash And Iron", "Wash And Fold", "Just Iron"],placeholder: "Wash And Iron",lastSelectedIndex: self.$lastSelectedServiceIndex)
+                                        .padding()
+                                        .frame(width: 300, height: 50)
+                                        .background(Color.black.opacity(0.05))
+                                        .cornerRadius(10)
+                                }
                                 
                                 HStack {
                                     Spacer()
                                     Button(action: {
                                         pickupTime = allotedPickupTimes[lastSelectedTimeIndex ?? 0]
                                         pickupDay = allotedPickupDays[lastSelectedDayIndex ?? 0]
+                                        serviceType = allotedServiceTypes[lastSelectedDayIndex ?? 1]
                                         if(pickupLocationGPS == ""){
                                             pickupLocationFinal = pickupLocation
                                         } else {
@@ -138,8 +124,9 @@ struct SubscriptionView: View {
                                         print("pickupLocationFinal: \(self.pickupLocationFinal)")
                                         print("pickupDay: \(self.pickupDay)")
                                         print("pickupTime: \(self.pickupTime)")
+                                        print("service_type: \(self.serviceType)")
                                         
-                                        getPriceManager.getPrice(num_of_ppl: String(self.numOfPeople), num_of_months: String(self.numOfMonths), pickup_day: pickupDay, pickup_time: self.pickupTime, pickup_location: pickupLocationFinal)
+                                        getPriceManager.getPrice(num_of_ppl: String(self.numOfPeople), num_of_months: String(self.numOfMonths), pickup_day: pickupDay, pickup_time: self.pickupTime, pickup_location: pickupLocationFinal, service_type: self.serviceType)
                                     }) {
                                         HStack (spacing: 8) {
                                             Text("GET SUBSCRIPTION PRICE")
@@ -201,7 +188,7 @@ class getSubscriptionPriceHttp: ObservableObject {
     @Published var user_email = ""
     
     
-    func getPrice(num_of_ppl: String, num_of_months: String, pickup_day: String, pickup_time: String, pickup_location: String) {
+    func getPrice(num_of_ppl: String, num_of_months: String, pickup_day: String, pickup_time: String, pickup_location: String, service_type: String) {
         
         self.requestOngoing = true
         guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/get-subscription-pricing")
@@ -218,6 +205,7 @@ class getSubscriptionPriceHttp: ObservableObject {
             "subscription_pickup_day" : pickup_day,
             "subscription_pickup_time" : pickup_time,
             "subscription_pickup_location" : pickup_location,
+            "subscription_service_type" : service_type,
             "app_type": "IOS",
             "app_version_code": MeMawwApp.app_version
         ]

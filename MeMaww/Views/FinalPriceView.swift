@@ -58,6 +58,9 @@ struct FinalPriceView: View {
                         if payOnline == "yes" && updateOrderPayment.viewStage == "1"{
                             Button(action: {
                                 updateOrderPayment.viewStage = "2"
+                                let txnrefInt = (txnReference as NSString).integerValue
+
+                                
                                 let checkout = TheTellerCheckout(
                                     /* */
                                     config: [
@@ -69,7 +72,7 @@ struct FinalPriceView: View {
                                         "isProduction" : true /*  if true  "API_Key_Prod" will be used to initiate checkout, set it  to false during test  */
                                     ])
                                 //"000000000010"
-                                checkout.initCheckout(transId:self.txnReference, amount: self.priceFinalLong, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
+                                checkout.initCheckout(transId: self.txnReference, amount: self.priceFinalLong, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////
                                     ///////////////////////////////////////

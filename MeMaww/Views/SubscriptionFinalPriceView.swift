@@ -37,6 +37,7 @@ struct SubscriptionFinalPriceView: View {
     @State var viewStage: String = "1"
     @State var paymentResponse: String = ""
     var merchantTestApiKey: String
+    var subscriptionServiceType: String
     @State var paymentStatus: String = ""
     @ObservedObject var updateSubscriptionOrderPayment = updateSubscriptionOrderPaymentHttp()
     
@@ -80,6 +81,8 @@ struct SubscriptionFinalPriceView: View {
                                     showButton = false
                                     //updateSubscriptionOrderPayment.viewStage = "3"
                                     
+                                    let txnrefInt = (txnReference as NSString).integerValue
+                                    
                                     let checkout = TheTellerCheckout(
                                         config: [
                                             "merchantID": self.merchantId,
@@ -100,6 +103,11 @@ struct SubscriptionFinalPriceView: View {
                                     print("txnReference-: " + txnReference)
                                     let newtxnRef = Int(txnReference) ?? 0
                                     print("txnReference2-: " + String(newtxnRef))
+                                    
+                                    print("txnNarration: " + String(txnReference))
+                                    print("priceFinal: " + String(priceFinal))
+                                    print("txnNarration: " + String(txnNarration))
+                                    print("priceFinal: " + String(userEmail))
                                     
                                     checkout.initCheckout(transId: self.txnReference, amount: self.priceFinal, desc: self.txnNarration, customerEmail: userEmail, paymentMethod: "momo", paymentCurrency: "GHS", callback: { string,error  in
                                         ///////////////////////////////////////
@@ -153,10 +161,10 @@ struct SubscriptionFinalPriceView: View {
                                         {
                                             if paymentStatus == "approved" {
                                                 selectedIndex = 2
-                                                updateSubscriptionOrderPayment.updateSubscriptionOrder(subscription_payment_transaction_id: txnReference, subscription_amount_paid: originalPrice, subscription_max_number_of_people_in_home: subscriptionPersons, subscription_number_of_months: subscriptionMonths, subscription_pickup_time: subscriptionPickupTime, subscription_pickup_location: subscriptionPickupLocation, subscription_package_description: subscriptionPackageDescription1 + " | " + subscriptionPackageDescription2 + " | " + subscriptionPackageDescription3 + " | " + subscriptionPackageDescription4, subscription_country_id: subscriptionCountryId, subscription_purge: "0")
+                                                updateSubscriptionOrderPayment.updateSubscriptionOrder(subscription_payment_transaction_id: txnReference, subscription_amount_paid: originalPrice, subscription_max_number_of_people_in_home: subscriptionPersons, subscription_number_of_months: subscriptionMonths, subscription_pickup_time: subscriptionPickupTime, subscription_pickup_location: subscriptionPickupLocation, subscription_package_description: subscriptionPackageDescription1 + " | " + subscriptionPackageDescription2 + " | " + subscriptionPackageDescription3 + " | " + subscriptionPackageDescription4, subscription_country_id: subscriptionCountryId, subscription_purge: "0", subscription_service_type: subscriptionServiceType)
                                                 //print("PAYMENT APPROVED: GONE TO ORDERS TAB NUMBERED: \(selectedIndex)")
                                             } else {
-                                                updateSubscriptionOrderPayment.updateSubscriptionOrder(subscription_payment_transaction_id: txnReference, subscription_amount_paid: originalPrice, subscription_max_number_of_people_in_home: subscriptionPersons, subscription_number_of_months: subscriptionMonths, subscription_pickup_time: subscriptionPickupTime, subscription_pickup_location: subscriptionPickupLocation, subscription_package_description: subscriptionPackageDescription1 + " | " + subscriptionPackageDescription2 + " | " + subscriptionPackageDescription3 + " | " + subscriptionPackageDescription4, subscription_country_id: subscriptionCountryId, subscription_purge: "1")
+                                                updateSubscriptionOrderPayment.updateSubscriptionOrder(subscription_payment_transaction_id: txnReference, subscription_amount_paid: originalPrice, subscription_max_number_of_people_in_home: subscriptionPersons, subscription_number_of_months: subscriptionMonths, subscription_pickup_time: subscriptionPickupTime, subscription_pickup_location: subscriptionPickupLocation, subscription_package_description: subscriptionPackageDescription1 + " | " + subscriptionPackageDescription2 + " | " + subscriptionPackageDescription3 + " | " + subscriptionPackageDescription4, subscription_country_id: subscriptionCountryId, subscription_purge: "1", subscription_service_type: subscriptionServiceType)
                                                 selectedIndex = 2
                                                 selectedIndex = 6
                                                 updateSubscriptionOrderPayment.viewStage = "1"
@@ -185,7 +193,7 @@ struct SubscriptionFinalPriceView: View {
 
 struct SubscriptionFinalPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionFinalPriceView(selectedIndex: .constant(2), originalPrice: "10", priceFinal: "10", priceFinalLong: "0000010", txnReference: "Test Txn", merchantId: "merchantId", merchantApiUser: "merchantApiKey", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", userCurrency: "Ghc", subscriptionPersons: "1", subscriptionMonths: "1", subscriptionPickupTime: "7:00", subscriptionPickupLocation: "Madina", subscriptionPackageDescription1: "Unlimited Items", subscriptionPackageDescription2: "1 Pickup per week", subscriptionPackageDescription3: "Delivery in 48hrs", subscriptionPackageDescription4: "Wash & Fold/Iron", subscriptionCountryId: "81", merchantTestApiKey: "merchantTestApiKey")
+        SubscriptionFinalPriceView(selectedIndex: .constant(2), originalPrice: "10", priceFinal: "10", priceFinalLong: "0000010", txnReference: "Test Txn", merchantId: "merchantId", merchantApiUser: "merchantApiKey", merchantApiKey: "merchantApiKey", returnUrl: "returnUrl", txnNarration: "txnNarration", userEmail: "userEmail", userCurrency: "Ghc", subscriptionPersons: "1", subscriptionMonths: "1", subscriptionPickupTime: "7:00", subscriptionPickupLocation: "Madina", subscriptionPackageDescription1: "Unlimited Items", subscriptionPackageDescription2: "1 Pickup per week", subscriptionPackageDescription3: "Delivery in 48hrs", subscriptionPackageDescription4: "Wash & Fold/Iron", subscriptionCountryId: "81", merchantTestApiKey: "merchantTestApiKey", subscriptionServiceType: "Wash And Iron")
     }
 }
 
@@ -213,7 +221,7 @@ class updateSubscriptionOrderPaymentHttp: ObservableObject {
     }
     
     
-    func updateSubscriptionOrder(subscription_payment_transaction_id: String, subscription_amount_paid: String, subscription_max_number_of_people_in_home: String, subscription_number_of_months: String, subscription_pickup_time: String, subscription_pickup_location: String, subscription_package_description: String, subscription_country_id: String, subscription_purge: String) {
+    func updateSubscriptionOrder(subscription_payment_transaction_id: String, subscription_amount_paid: String, subscription_max_number_of_people_in_home: String, subscription_number_of_months: String, subscription_pickup_time: String, subscription_pickup_location: String, subscription_package_description: String, subscription_country_id: String, subscription_purge: String, subscription_service_type: String) {
         
         self.requestOngoing = true
         guard let url = URL(string: MeMawwApp.app_domain + "/api/v1/user/set-user-subscription")
@@ -232,6 +240,7 @@ class updateSubscriptionOrderPaymentHttp: ObservableObject {
             "subscription_pickup_time":subscription_pickup_time,
             "subscription_pickup_location":subscription_pickup_location,
             "subscription_package_description":subscription_package_description,
+            "subscription_service_type":subscription_service_type,
             "subscription_country_id":subscription_country_id,
             "subscription_purge":subscription_purge,
             "app_type": "IOS",
@@ -245,6 +254,7 @@ class updateSubscriptionOrderPaymentHttp: ObservableObject {
         print("subscription_pickup_time: \(subscription_pickup_time)")
         print("subscription_pickup_location: \(subscription_pickup_location)")
         print("subscription_package_description: \(subscription_package_description)")
+        print("subscription_service_type: \(subscription_service_type)")
         print("subscription_country_id: \(subscription_country_id)")
         print("subscription_purge: \(subscription_purge)")
         print("user_accesstoken: \(getSavedString("user_accesstoken"))")
