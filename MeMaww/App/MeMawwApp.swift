@@ -123,10 +123,6 @@ struct MeMawwApp: App {
       }
     }
 
-
-
-
-
     func getSavedString(_ index: String) -> String {
         var str = UserDefaults.standard.string(forKey: index) ?? ""
         //print("getSavedString: \(str)")
