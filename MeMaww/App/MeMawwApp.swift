@@ -109,7 +109,6 @@ struct MeMawwApp: App {
     @ObservedObject var updateUserInfoObj = HttpUpdateUserInfo()
         
     var body: some Scene {
-        
         WindowGroup {
             if(self.currentStage == "OnboardingView" || self.currentStage == ""){
                 OnboardingView(currentStage: $currentStage)
@@ -118,7 +117,6 @@ struct MeMawwApp: App {
             } else {
                 MainView(currentStage: $currentStage)
             }
-            
         }
       }
     }
