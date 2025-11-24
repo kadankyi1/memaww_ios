@@ -93,6 +93,24 @@ struct OrdersMenuView: View {
                     }
                 )
             } else {
+                if sendCallBackRequestManager.viewStage ==  4 {
+                    
+                    VStack {}.alert(isPresented: $model.isValid, content: {
+                        Alert(title: Text("Update Required"),
+                              message: Text("Please update your app"),
+                              dismissButton: .default(
+                                Text("Go To Store"))
+                                {
+                                    //openURL(URL(string: "https://memaww.com/privacy-policy")!)
+                                    if let u = URL(string: "itms-apps://itunes.apple.com/app/id6740815969"),
+                                          UIApplication.shared.canOpenURL(u) {
+                                            UIApplication.shared.open(u)
+                                    }
+                                    //Link("Store", destination: URL(string: "https://memaww.com/privacy-policy")!)
+                                    
+                                })
+                    })
+                }
                 Button(action: {
                     sendCallBackRequestManager.viewStage = 2
                     sendCallBackRequestManager.sendCallBackRequest()
@@ -293,26 +311,29 @@ class sendCallBackRequestHttp: ObservableObject {
         
     DispatchQueue.main.async {
         self.requestOngoing = false
-        if status == "success" {
-        
-            if let message = json["message"].string {
-                self.requestStatusSuccessful = true
-                self.message = message
-                print("message: \(self.message)")
-                self.viewStage = 1
-            }
+            if status == "success" {
             
-        } else {
-            if let message = json["message"].string {
-                //Now you got your value
-                print("message: " + message)
-                self.message = message
-                self.viewStage = 1
-                  DispatchQueue.main.async {
-                      self.requestMessage = message
+                if let message = json["message"].string {
+                    self.requestStatusSuccessful = true
+                    self.message = message
+                    print("message: \(self.message)")
+                    self.viewStage = 1
+                }
+                
+            }  else if status == "update"{
+                self.viewStage = 4
+                print("viewStage 444: \(self.viewStage)")
+            } else {
+                if let message = json["message"].string {
+                    //Now you got your value
+                    print("message: " + message)
+                    self.message = message
+                    self.viewStage = 1
+                      DispatchQueue.main.async {
+                          self.requestMessage = message
+                      }
                   }
-              }
-            }
+                }
           }
          }
         } catch  let error as NSError {
