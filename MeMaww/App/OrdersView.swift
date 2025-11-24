@@ -15,7 +15,8 @@ struct OrdersView: View {
     var access_token: String = getSavedString("user_accesstoken");
     @ObservedObject var model: MyModel = MyModel()
     @ObservedObject var orders_http_manager = HttpGetOrders()
-    
+    @Environment(\.openURL) private var openURL
+
 
     // MARK: - BODY
     var body: some View {
@@ -37,7 +38,12 @@ struct OrdersView: View {
                                   dismissButton: .default(
                                     Text("Go To Store"))
                                     {
-                                        //print("do something")
+                                        //openURL(URL(string: "https://memaww.com/privacy-policy")!)
+                                        if let u = URL(string: "itms-apps://itunes.apple.com/app/id6740815969"),
+                                              UIApplication.shared.canOpenURL(u) {
+                                                UIApplication.shared.open(u)
+                                        }
+                                        //Link("Store", destination: URL(string: "https://memaww.com/privacy-policy")!)
                                         
                                     })
                         })
