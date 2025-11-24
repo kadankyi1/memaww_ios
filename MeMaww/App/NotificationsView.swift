@@ -20,6 +20,24 @@ struct NotificationsView: View {
 
     // MARK: - BODY
     var body: some View {
+        if notifications_http_manager.viewStage ==  4 {
+            
+            VStack {}.alert(isPresented: $model.isValid, content: {
+                Alert(title: Text("Update Required"),
+                      message: Text("Please update your app"),
+                      dismissButton: .default(
+                        Text("Go To Store"))
+                        {
+                            //openURL(URL(string: "https://memaww.com/privacy-policy")!)
+                            if let u = URL(string: "itms-apps://itunes.apple.com/app/id6740815969"),
+                                  UIApplication.shared.canOpenURL(u) {
+                                    UIApplication.shared.open(u)
+                            }
+                            //Link("Store", destination: URL(string: "https://memaww.com/privacy-policy")!)
+                            
+                        })
+            })
+        }
             if notifications_http_manager.requestMade {
                 if (notifications_http_manager.status == "success"){
                     List {
@@ -81,6 +99,7 @@ class HttpGetNotifications: ObservableObject {
     @Published var requestMade = false
     @Published var message = ""
     @Published var status = "failed"
+    @Published var viewStage = 1
     @Published var my_notifications: [NotificationModel] = []
 
     func getNotifications(user_accesstoken: String) {
@@ -123,7 +142,10 @@ class HttpGetNotifications: ObservableObject {
     DispatchQueue.main.async {
         self.requestMade = true
         self.status = status
-        if status == "success" {
+        if status == "update"{
+            self.viewStage = 4
+            print("viewStage 444: \(self.viewStage)")
+        } else if status == "success" {
             print(status)
             if let items = json["data"].array {
                 for item in items {
