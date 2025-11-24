@@ -10,6 +10,7 @@ import SwiftyJSON
 
 struct OrdersMenuView: View {
     @Binding var selectedIndex: Int
+    @ObservedObject var model: MyModel = MyModel()
     @ObservedObject var checkUserSubscriptionManager = checkMySubscriptionHttp()
     @ObservedObject var sendCallBackRequestManager = sendCallBackRequestHttp()
     
@@ -47,6 +48,24 @@ struct OrdersMenuView: View {
                     print("checkUserSubscriptionManager.viewStage 2: " + String(checkUserSubscriptionManager.viewStage))
                 }
             } else {
+                if checkUserSubscriptionManager.viewStage ==  4 {
+                    
+                    VStack {}.alert(isPresented: $model.isValid, content: {
+                        Alert(title: Text("Update Required"),
+                              message: Text("Please update your app"),
+                              dismissButton: .default(
+                                Text("Go To Store"))
+                                {
+                                    //openURL(URL(string: "https://memaww.com/privacy-policy")!)
+                                    if let u = URL(string: "itms-apps://itunes.apple.com/app/id6740815969"),
+                                          UIApplication.shared.canOpenURL(u) {
+                                            UIApplication.shared.open(u)
+                                    }
+                                    //Link("Store", destination: URL(string: "https://memaww.com/privacy-policy")!)
+                                    
+                                })
+                    })
+                }
                 Button(action: {
                         selectedIndex = 6
                 }, label: {
@@ -182,7 +201,10 @@ class checkMySubscriptionHttp: ObservableObject {
                 print("viewStage 111: \(self.viewStage)")
             }
             
-        } else {
+        } else if status == "update"{
+            self.viewStage = 4
+            print("viewStage 444: \(self.viewStage)")
+        }  else {
             if let message = json["message"].string {
                 //Now you got your value
                 print("message: " + message)
