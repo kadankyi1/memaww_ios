@@ -11,6 +11,7 @@ import SwiftyJSON
 
 struct StartOrderView: View {
     @StateObject private var viewModel = ContentViewModel()
+    @ObservedObject var model: MyModel = MyModel()
     
     @State var stepper: Int = 0
     
@@ -49,6 +50,24 @@ struct StartOrderView: View {
     
     var body: some View {
         
+            if getPriceManager.viewStage ==  4 {
+                
+                VStack {}.alert(isPresented: $model.isValid, content: {
+                    Alert(title: Text("Update Required"),
+                          message: Text("Please update your app"),
+                          dismissButton: .default(
+                            Text("Go To Store"))
+                            {
+                                //openURL(URL(string: "https://memaww.com/privacy-policy")!)
+                                if let u = URL(string: "itms-apps://itunes.apple.com/app/id6740815969"),
+                                      UIApplication.shared.canOpenURL(u) {
+                                        UIApplication.shared.open(u)
+                                }
+                                //Link("Store", destination: URL(string: "https://memaww.com/privacy-policy")!)
+                                
+                            })
+                })
+            }
         NavigationView {
                 VStack(spacing: 0) {
                     
@@ -242,6 +261,7 @@ class getPriceHttp: ObservableObject {
     @Published var txnNarration = ""
     @Published var userEmail = ""
     @Published var merchantTestApiKey = ""
+    @Published var viewStage = 1
     
     
     func getPrice(collect_loc_raw: String, collect_loc_gps: String, collect_datetime: String, contact_person_phone: String, drop_loc_raw: String, drop_loc_gps: String, drop_datetime: String, featherweightitems_justwash_quantity: String, featherweightitems_washandiron_quantity: String, featherweightitems_justiron_quantity: String,  smallitems_justwash_quantity: String, smallitems_washandiron_quantity: String, smallitems_justiron_quantity: String,mediumitems_justwash_quantity: String, mediumitems_washandiron_quantity: String, mediumitems_justiron_quantity: String, bigitems_justwash_quantity: String, bigitems_washandiron_quantity: String, bigitems_justiron_quantity: String, special_instructions: String, discount_code: String) {
@@ -310,7 +330,9 @@ class getPriceHttp: ObservableObject {
         
     DispatchQueue.main.async {
         self.requestOngoing = false
-        if status == "success" {
+        if status == "update"{
+            self.viewStage = 4
+        } else if status == "success" {
             if let pay_online = json["pay_online"].string {
                 self.payOnline = pay_online
                 print("payOnline: \(self.payOnline)")
