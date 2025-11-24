@@ -29,6 +29,18 @@ struct OrdersView: View {
                             //}
                         }
                     }
+                } else if (orders_http_manager.status == "update"){
+                        VStack {}
+                            .alert(isPresented: $model.isValid, content: {
+                            Alert(title: Text("Update Required"),
+                                  message: Text("Please update your app"),
+                                  dismissButton: .default(
+                                    Text("Go To Store"))
+                                    {
+                                        //print("do something")
+                                        
+                                    })
+                        })
                 } else {
                     VStack {}
                         .alert(isPresented: $model.isValid, content: {
